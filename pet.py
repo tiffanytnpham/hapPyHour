@@ -30,9 +30,11 @@ class Pet:
 
   def update_hourly(self):
       """Decrement food and happiness hourly and check health impacts."""
+      print(f"Before Update - Food: {self.food}, Happiness: {self.happiness}, Health: {self.health}")
       self.food = max(0, self.food - 1)
       self.happiness = max(0, self.happiness - 1)
       self.check_health()
+      print(f"After Update - Food: {self.food}, Happiness: {self.happiness}, Health: {self.health}")
 
   def check_health(self):
       """Adjust the pet's health based on its food and happiness levels."""

@@ -24,6 +24,7 @@ class GameManager:
         }
         with open(filename, 'w') as f:
             json.dump(game_data, f, indent=4)
+        print(f"Game state saved: Name: {self.pet.name}, Food: {self.pet.food}, Happiness: {self.pet.happiness}, Health: {self.pet.health}")
         print("Game state saved.")
 
     def load_game(self, filename='game_save.json'):
@@ -40,15 +41,23 @@ class GameManager:
         """Update the game state from loaded data, including simulating missed time."""
         last_saved = datetime.datetime.fromisoformat(game_data['last_saved'])
         elapsed_time = datetime.datetime.now() - last_saved
-        hours_passed = elapsed_time.total_seconds() // 3600
-        for _ in range(int(hours_passed)):
-            self.pet.update_hourly()
+        hours_passed = int(elapsed_time.total_seconds() // 3600)
+        print(f"Loading game... Hours passed since last save: {hours_passed}")
 
+        # Set the pet's attributes based on the loaded game data before updating.
         self.pet.name = game_data['name']
         self.pet.food = game_data['food']
         self.pet.happiness = game_data['happiness']
         self.pet.health = game_data['health']
+
+        # Update based on the time passed since the last save
+        for _ in range(hours_passed):
+            self.pet.update_hourly()
+
+        self.save_game()
         self.game_loaded = True
+
+        print(f"After update - Food: {self.pet.food}, Happiness: {self.pet.happiness}, Health: {self.pet.health}")
 
     def create_initial_game_state(self):
         """Initialize a new game state and save it, marking as not loaded."""
@@ -60,5 +69,6 @@ class GameManager:
     def handle_event(self, event):
         """Respond to timed updates for the pet's state."""
         if event.type == pygame.USEREVENT + 1:
+            print("Hourly update event triggered")
             self.pet.update_hourly()
             self.save_game()

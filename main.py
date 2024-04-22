@@ -54,10 +54,11 @@ while running:
     if current_state == "main menu":
         if start_background:
             screen.blit(start_background, (0, 0))
+        start_button.update()
         screen.blit(start_button.image, start_button.rect)
         if logo:
             screen.blit(logo, (10, 10))
-        start_button.update()
+        #start_button.update()
         # Check for button press to switch to initialization state
         for event in pygame.event.get():
             start_button.handle_event(event)  # Handle button events
@@ -130,6 +131,8 @@ while running:
             # Save the game and exit
             game_manager.save_game()
             running = False
+        if current_state == "main menu":
+            start_button.handle_event(event)
 
     pygame.display.flip()
 
