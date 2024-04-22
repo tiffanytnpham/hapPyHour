@@ -15,8 +15,10 @@ class Config:
     FONT_SIZE = 20
 
     # Paths
-    BACKGROUND_PATH = "back.jpg"
-    LOGO_PATH = "logo.png"
+    BACKGROUND_PATH = "Sprites/back.jpg"
+    LOGO_PATH = "Sprites/logo.png"
+    CONTINUE_PATH = "Sprites/Button/continue.png"
+    CONTINUE_HOVER_PATH = "Sprites/Button/continue_hover.png"
 
     # Button settings
     START_BUTTON_COLOR = PINK
