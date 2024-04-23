@@ -23,12 +23,19 @@ start_background = Config.load_image(Config.BACKGROUND_PATH)
 game_background = Config.load_image(Config.BACKGROUND_PATH)
 logo = Config.load_image(Config.LOGO_PATH, alpha=True)
 
-button_normal = Config.load_image(Config.CONTINUE_PATH, alpha=True)
-button_pressed = Config.load_image(Config.CONTINUE_HOVER_PATH, alpha=True)
-button_hover = Config.load_image(Config.CONTINUE_HOVER_PATH, alpha=True)
+# Main menu buttons
+continue_normal = Config.load_image(Config.CONTINUE_PATH, alpha=True)
+continue_hover = Config.load_image(Config.CONTINUE_HOVER_PATH, alpha=True)
 
-start_button = Button(Config.START_BUTTON_POSITION.x, Config.START_BUTTON_POSITION.y, button_normal, button_pressed,
-                      button_hover)
+# Game scene buttons
+feed_normal = Config.load_image(Config.FEED_PATH, alpha=True)
+feed_hover = Config.load_image(Config.FEED_HOVER_PATH, alpha=True)
+happy_normal = Config.load_image(Config.HAPPY_PATH, alpha=True)
+happy_hover = Config.load_image(Config.HAPPY_HOVER_PATH, alpha=True)
+play_normal = Config.load_image(Config.PLAY_PATH, alpha=True)
+play_hover = Config.load_image(Config.PLAY_HOVER_PATH, alpha=True)
+sleep_normal = Config.load_image(Config.SLEEP_PATH, alpha=True)
+sleep_hover = Config.load_image(Config.SLEEP_HOVER_PATH, alpha=True)
 
 # Configure the font
 small_font = pygame.font.SysFont(Config.FONT_NAME, Config.FONT_SIZE)
@@ -37,13 +44,13 @@ small_font = pygame.font.SysFont(Config.FONT_NAME, Config.FONT_SIZE)
 current_state = "main menu" if not game_manager.game_loaded else "game"
 
 
-def start_game():
-    global current_state
-    current_state = "init"
+#def start_game():
+ #   global current_state
+  #  current_state = "init"
 
 
-start_button = Button(Config.START_BUTTON_POSITION.x, Config.START_BUTTON_POSITION.y, button_normal,
-                      button_pressed, action=start_game)
+start_button = Button(Config.START_BUTTON_POSITION.x, Config.START_BUTTON_POSITION.y, continue_normal,
+                      continue_hover)
 
 # Main game loop
 running = True
@@ -58,7 +65,6 @@ while running:
         screen.blit(start_button.image, start_button.rect)
         if logo:
             screen.blit(logo, (10, 10))
-        #start_button.update()
         # Check for button press to switch to initialization state
         for event in pygame.event.get():
             start_button.handle_event(event)  # Handle button events
