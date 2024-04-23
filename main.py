@@ -23,9 +23,9 @@ start_background = Config.load_image(Config.BACKGROUND_PATH)
 game_background = Config.load_image(Config.BACKGROUND_PATH)
 logo = Config.load_image(Config.LOGO_PATH, alpha=True)
 
-button_normal = Config.load_image(Config.CONTINUE_PATH)
-button_pressed = Config.load_image(Config.CONTINUE_HOVER_PATH)
-button_hover = Config.load_image(Config.CONTINUE_HOVER_PATH)
+button_normal = Config.load_image(Config.CONTINUE_PATH, alpha=True)
+button_pressed = Config.load_image(Config.CONTINUE_HOVER_PATH, alpha=True)
+button_hover = Config.load_image(Config.CONTINUE_HOVER_PATH, alpha=True)
 
 start_button = Button(Config.START_BUTTON_POSITION.x, Config.START_BUTTON_POSITION.y, button_normal, button_pressed,
                       button_hover)
