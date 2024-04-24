@@ -160,6 +160,10 @@ while running:
         back_button.update()
         screen.blit(back_button.image, back_button)
 
+        if event.type == pygame.MOUSEBUTTONDOWN:
+            if back_button.rect.collidepoint(pygame.mouse.get_pos()):
+                change_state("game")
+
     elif current_state == "happy":
         screen.fill(Config.YELLOW)
 
@@ -170,17 +174,27 @@ while running:
         back_button.update()
         screen.blit(back_button.image, back_button)
 
+        if event.type == pygame.MOUSEBUTTONDOWN:
+            if back_button.rect.collidepoint(pygame.mouse.get_pos()):
+                change_state("game")
+
     elif current_state == "play":
         screen.fill(Config.PURPLE)
 
         back_button.update()
         screen.blit(back_button.image, back_button)
+        if event.type == pygame.MOUSEBUTTONDOWN:
+            if back_button.rect.collidepoint(pygame.mouse.get_pos()):
+                change_state("game")
 
     elif current_state == "sleep":
         screen.fill(Config.GREY)
 
         back_button.update()
         screen.blit(back_button.image, back_button)
+        if event.type == pygame.MOUSEBUTTONDOWN:
+            if back_button.rect.collidepoint(pygame.mouse.get_pos()):
+                change_state("game")
 
     # Event handling
     for event in pygame.event.get():
@@ -195,6 +209,7 @@ while running:
             happy_button.handle_event(event)
             play_button.handle_event(event)
             sleep_button.handle_event(event)
+            back_button.handle_event(event)
 
     pygame.display.flip()
 
