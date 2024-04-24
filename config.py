@@ -9,6 +9,10 @@ class Config:
     WHITE = (255, 255, 255)
     PINK = (225, 158, 176)
     BLUE = (212, 223, 230)
+    GREEN = (185, 212, 199)
+    GREY = (193, 193, 193)
+    YELLOW = (244, 226, 178)
+    PURPLE = (223, 186, 255)
 
     # Font settings
     FONT_NAME = "sunnyspellsregular"
@@ -17,6 +21,7 @@ class Config:
     # Paths
     BACKGROUND_PATH = "Sprites/back.jpg"
     LOGO_PATH = "Sprites/logo.png"
+
     CONTINUE_PATH = "Sprites/Button/continue.png"
     CONTINUE_HOVER_PATH = "Sprites/Button/continue_hover.png"
     NEW_GAME_PATH = "Sprites/Button/new_game.png"
@@ -29,8 +34,8 @@ class Config:
     PLAY_HOVER_PATH = "Sprites/Button/play_hover.png"
     SLEEP_PATH = "Sprites/Button/sleep.png"
     SLEEP_HOVER_PATH = "Sprites/Button/sleep_hover.png"
-
-    START_BUTTON_POSITION = pygame.Rect(SCREEN_WIDTH // 2 - 70, 350, 140, 50)
+    BACK_PATH = "Sprites/Button/back.png"
+    BACK_HOVER_PATH = "Sprites/Button/back_hover.png"
 
     # Helper method for loading images
     @staticmethod

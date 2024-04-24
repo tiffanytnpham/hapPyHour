@@ -36,6 +36,8 @@ play_normal = Config.load_image(Config.PLAY_PATH, alpha=True)
 play_hover = Config.load_image(Config.PLAY_HOVER_PATH, alpha=True)
 sleep_normal = Config.load_image(Config.SLEEP_PATH, alpha=True)
 sleep_hover = Config.load_image(Config.SLEEP_HOVER_PATH, alpha=True)
+back_normal = Config.load_image(Config.BACK_PATH, alpha=True)
+back_hover = Config.load_image(Config.BACK_HOVER_PATH, alpha=True)
 
 # Configure the font
 small_font = pygame.font.SysFont(Config.FONT_NAME, Config.FONT_SIZE)
@@ -44,13 +46,17 @@ small_font = pygame.font.SysFont(Config.FONT_NAME, Config.FONT_SIZE)
 current_state = "main menu" if not game_manager.game_loaded else "game"
 
 
-#def start_game():
- #   global current_state
-  #  current_state = "init"
+def change_state(new_state):
+    global current_state
+    current_state = new_state
 
 
-start_button = Button(Config.START_BUTTON_POSITION.x, Config.START_BUTTON_POSITION.y, continue_normal,
-                      continue_hover)
+start_button = Button(202, 300, continue_normal, continue_hover, action=lambda: change_state('innit'))
+feed_button = Button(37, 450, feed_normal, feed_hover, action=lambda: change_state('feed'))
+happy_button = Button(161, 450, happy_normal, happy_hover, action=lambda: change_state('happy'))
+play_button = Button(300, 450, play_normal, play_hover, action=lambda: change_state('play'))
+sleep_button = Button(410, 450, sleep_normal, sleep_hover, action=lambda: change_state('sleep'))
+back_button = Button(425, 10, back_normal, back_hover, action=lambda: change_state('game'))
 
 # Main game loop
 running = True
@@ -74,6 +80,7 @@ while running:
                 mouse_pos = pygame.mouse.get_pos()
                 if start_button.rect.collidepoint(mouse_pos):
                     current_state = "init"
+
     # Handle initial game setup where player names their pet
     elif current_state == "init":
         input_box = pygame.Rect(Config.SCREEN_WIDTH // 2 - 100, Config.SCREEN_HEIGHT // 2 - 25, 200, 50)
@@ -132,6 +139,50 @@ while running:
         pet_info_render = small_font.render(pet_info_text, True, Config.WHITE)
         screen.blit(pet_info_render, (10, 10))
 
+        feed_button.update()
+        happy_button.update()
+        play_button.update()
+        sleep_button.update()
+        back_button.update()
+
+        screen.blit(feed_button.image, feed_button.rect)
+        screen.blit(happy_button.image, happy_button.rect)
+        screen.blit(play_button.image, play_button.rect)
+        screen.blit(sleep_button.image, sleep_button.rect)
+
+    elif current_state == "feed":
+        screen.fill(Config.GREEN)
+
+        pet_info_text = f"Food: {game_manager.pet.food}"
+        pet_info_render = small_font.render(pet_info_text, True, Config.WHITE)
+        screen.blit(pet_info_render, (10, 10))
+
+        back_button.update()
+        screen.blit(back_button.image, back_button)
+
+    elif current_state == "happy":
+        screen.fill(Config.YELLOW)
+
+        pet_info_text = f"Happiness: {game_manager.pet.happiness}, Health: {game_manager.pet.health}"
+        pet_info_render = small_font.render(pet_info_text, True, Config.WHITE)
+        screen.blit(pet_info_render, (10, 10))
+
+        back_button.update()
+        screen.blit(back_button.image, back_button)
+
+    elif current_state == "play":
+        screen.fill(Config.PURPLE)
+
+        back_button.update()
+        screen.blit(back_button.image, back_button)
+
+    elif current_state == "sleep":
+        screen.fill(Config.GREY)
+
+        back_button.update()
+        screen.blit(back_button.image, back_button)
+
+    # Event handling
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             # Save the game and exit
@@ -139,6 +190,11 @@ while running:
             running = False
         if current_state == "main menu":
             start_button.handle_event(event)
+        elif current_state == "game":
+            feed_button.handle_event(event)
+            happy_button.handle_event(event)
+            play_button.handle_event(event)
+            sleep_button.handle_event(event)
 
     pygame.display.flip()
 
