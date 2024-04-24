@@ -18,10 +18,11 @@ class Config:
     FONT_NAME = "sunnyspellsregular"
     FONT_SIZE = 20
 
-    # Paths
+    # Background Paths
     BACKGROUND_PATH = "Sprites/back.jpg"
     LOGO_PATH = "Sprites/logo.png"
 
+    # Button paths
     CONTINUE_PATH = "Sprites/Button/continue.png"
     CONTINUE_HOVER_PATH = "Sprites/Button/continue_hover.png"
     NEW_GAME_PATH = "Sprites/Button/new_game.png"
@@ -36,6 +37,21 @@ class Config:
     SLEEP_HOVER_PATH = "Sprites/Button/sleep_hover.png"
     BACK_PATH = "Sprites/Button/back.png"
     BACK_HOVER_PATH = "Sprites/Button/back_hover.png"
+
+    # Pet paths
+    HAPPY1_PATH = "Sprites/Level1/Happy/happy1.png"
+    HAPPY2_PATH = "Sprites/Level1/Happy/happy2.png"
+    HAPPY3_PATH = "Sprites/Level1/Happy/happy3.png"
+
+    UNHAPPY1_PATH = "Sprites/Level1/Unhappy/unhappy1.png"
+    UNHAPPY2_PATH = "Sprites/Level1/Unhappy/unhappy2.png"
+    UNHAPPY3_PATH = "Sprites/Level1/Unhappy/unhappy3.png"
+
+    IDLE1_PATH = "Sprites/Level1/Idle/idle1.png"
+    IDLE2_PATH = "Sprites/Level1/Idle/idle2.png"
+    IDLE3_PATH = "Sprites/Level1/Idle/idle3.png"
+    IDLE4_PATH = "Sprites/Level1/Idle/idle4.png"
+
 
     # Helper method for loading images
     @staticmethod
