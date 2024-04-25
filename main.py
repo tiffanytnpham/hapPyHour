@@ -7,7 +7,7 @@ from food import Food
 from pet import Pet
 from config import Config
 from gamemanager import GameManager
-
+from toy import Toy
 
 def change_state(new_state):
     global current_state
@@ -58,8 +58,8 @@ def draw_health(screen, health, max_health=10):
             screen.blit(empty_heart, (heart_x, 25))
 
 
-def draw_food_inventory(screen, food_items, start_x, start_y, columns, cell_size, spacing):
-    for index, item in enumerate(food_items):
+def draw_inventory(screen, items, start_x, start_y, columns, cell_size, spacing):
+    for index, item in enumerate(items):
         col = index % columns
         row = index // columns
         x = start_x + col * (cell_size + spacing)
@@ -68,6 +68,7 @@ def draw_food_inventory(screen, food_items, start_x, start_y, columns, cell_size
 
 
 selected_food = None
+selected_toy = None
 
 
 def feed_pet():
@@ -77,13 +78,28 @@ def feed_pet():
         print(f"Feeding {selected_food.name} increases food by {selected_food.hunger_value}")
         selected_food = None
 
-def handle_food_selection(mouse_pos, food_items):
+
+def give_toy():
+    global selected_toy
+    if selected_toy:
+        game_manager.pet.play(selected_toy.happy_value)
+        print(f"Giving {selected_toy.name} increases happiness by {selected_toy.happy_value}")
+        selected_toy = None
+
+
+def handle_selection(mouse_pos, items, current_state):
     global selected_food
-    for item in food_items:
+    global selected_toy
+    for item in items:
         if item.rect.collidepoint(mouse_pos):
-            selected_food = item
-            print(f"Selected {selected_food.name}")
-            break
+            if current_state == "feed":
+                selected_food = item
+                print(f"Selected {selected_food.name}")
+                break
+            elif current_state == "happy":
+                selected_toy = item
+                print(f"Selected {selected_toy.name}")
+                break
 
 
 # Initialize the pygame library
@@ -135,9 +151,17 @@ current_state = "main menu" if not game_manager.game_loaded else "game"
 # Initialize food items
 peach = Food("Peach", "Sprites/Food/peach.png", 1, alpha=True)
 cherry = Food("Cherry", "Sprites/Food/cherry.png", 2, alpha=True)
+fish = Food("Fish", "Sprites/Food/fish.png", 3, alpha=True)
+food_items = [peach, cherry, fish]  # List of food items
 
-food_items = [peach, cherry]  # List of food items
+# Initialize toy items
+feather = Toy("Feather", "Sprites/Toy/feather.png", 1, alpha=True)
+yarn = Toy("Yarn", "Sprites/Toy/yarn.png", 2, alpha=True)
+box = Toy("Box", "Sprites/Toy/box.png", 3, alpha=True)
+toy_items = [feather, yarn, box]  # List of toy items
+
 eat_button = Button(425, 460, feed_normal, feed_hover, action=feed_pet)
+toy_button = Button(425, 460, play_normal, play_hover, action=give_toy)
 
 # Main game loop
 running = True
@@ -253,9 +277,10 @@ while running:
 
         if event.type == pygame.MOUSEBUTTONDOWN:
             if back_button.rect.collidepoint(pygame.mouse.get_pos()):
+                selected_food = None
                 change_state("game")
 
-        draw_food_inventory(screen, food_items, 10, 460, 5, 50, 10)  # Draw food inventory
+        draw_inventory(screen, food_items, 10, 460, 5, 50, 10)  # Draw food inventory
         eat_button.update()
         screen.blit(eat_button.image, eat_button.rect)
 
@@ -272,8 +297,12 @@ while running:
 
         if event.type == pygame.MOUSEBUTTONDOWN:
             if back_button.rect.collidepoint(pygame.mouse.get_pos()):
+                selected_toy = None
                 change_state("game")
 
+        draw_inventory(screen, toy_items, 10, 460, 5, 50, 10)  # Draw toy inventory
+        toy_button.update()
+        screen.blit(toy_button.image, toy_button.rect)
     elif current_state == "play":
         screen.fill(Config.PURPLE)
         screen.blit(pet_sprite, sprite_position)
@@ -310,11 +339,16 @@ while running:
             back_button.handle_event(event)
         elif event.type == pygame.MOUSEBUTTONDOWN:
             mouse_x, mouse_y = pygame.mouse.get_pos()
-            if current_state == 'feed':
-                handle_food_selection((mouse_x, mouse_y), food_items)
+            if current_state == "feed":
+                handle_selection((mouse_x, mouse_y), food_items, current_state)
                 # Check if the feed button is clicked to feed the pet
                 if eat_button.rect.collidepoint((mouse_x, mouse_y)):
                     feed_pet()
+            elif current_state == "happy":
+                handle_selection((mouse_x, mouse_y), toy_items, current_state)
+                # Check if the play button is clicked to give toy to the pet
+                if eat_button.rect.collidepoint((mouse_x, mouse_y)):
+                    give_toy()
 
     pygame.display.flip()
 

@@ -13,9 +13,9 @@ class Pet:
         self.food = min(5, self.food + amount)
         self.check_health()
 
-    def play(self):
+    def play(self, amount):
         """Play with the pet to increase its happiness, and check its health impact."""
-        self.happiness = min(5, self.happiness + 1)
+        self.happiness = min(5, self.happiness + amount)
         self.check_health()
 
     def sleep(self, current_time):
