@@ -71,17 +71,14 @@ selected_food = None
 selected_toy = None
 
 
-def feed_pet():
+def give_item():
     global selected_food
+    global selected_toy
     if selected_food:
         game_manager.pet.feed(selected_food.hunger_value)
         print(f"Feeding {selected_food.name} increases food by {selected_food.hunger_value}")
         selected_food = None
-
-
-def give_toy():
-    global selected_toy
-    if selected_toy:
+    elif selected_toy:
         game_manager.pet.play(selected_toy.happy_value)
         print(f"Giving {selected_toy.name} increases happiness by {selected_toy.happy_value}")
         selected_toy = None
@@ -160,8 +157,8 @@ yarn = Toy("Yarn", "Sprites/Toy/yarn.png", 2, alpha=True)
 box = Toy("Box", "Sprites/Toy/box.png", 3, alpha=True)
 toy_items = [feather, yarn, box]  # List of toy items
 
-eat_button = Button(425, 460, feed_normal, feed_hover, action=feed_pet)
-toy_button = Button(425, 460, play_normal, play_hover, action=give_toy)
+eat_button = Button(425, 460, feed_normal, feed_hover, action=give_item)
+toy_button = Button(425, 460, play_normal, play_hover, action=give_item)
 
 # Main game loop
 running = True
@@ -343,12 +340,12 @@ while running:
                 handle_selection((mouse_x, mouse_y), food_items, current_state)
                 # Check if the feed button is clicked to feed the pet
                 if eat_button.rect.collidepoint((mouse_x, mouse_y)):
-                    feed_pet()
+                    give_item()
             elif current_state == "happy":
                 handle_selection((mouse_x, mouse_y), toy_items, current_state)
                 # Check if the play button is clicked to give toy to the pet
                 if eat_button.rect.collidepoint((mouse_x, mouse_y)):
-                    give_toy()
+                    give_item()
 
     pygame.display.flip()
 
