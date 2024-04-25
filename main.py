@@ -288,7 +288,7 @@ while running:
         screen.fill(Config.YELLOW)
         screen.blit(pet_sprite, sprite_position)
 
-        pet_info_text = f"Happiness: {game_manager.pet.happiness}, Health: {game_manager.pet.health}"
+        pet_info_text = f"Happiness: {game_manager.pet.happiness}"
         pet_info_render = small_font.render(pet_info_text, True, Config.WHITE)
         screen.blit(pet_info_render, (10, 10))
 
