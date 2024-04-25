@@ -2,6 +2,8 @@ import pygame
 import os
 
 from button import Button
+import pygame
+from food import Food
 from pet import Pet
 from config import Config
 from gamemanager import GameManager
@@ -56,6 +58,34 @@ def draw_health(screen, health, max_health=10):
             screen.blit(empty_heart, (heart_x, 25))
 
 
+def draw_food_inventory(screen, food_items, start_x, start_y, columns, cell_size, spacing):
+    for index, item in enumerate(food_items):
+        col = index % columns
+        row = index // columns
+        x = start_x + col * (cell_size + spacing)
+        y = start_y + row * (cell_size + spacing)
+        item.draw(screen, (x, y))
+
+
+selected_food = None
+
+
+def feed_pet():
+    global selected_food
+    if selected_food:
+        game_manager.pet.feed(selected_food.hunger_value)
+        print(f"Feeding {selected_food.name} increases food by {selected_food.hunger_value}")
+        selected_food = None
+
+def handle_food_selection(mouse_pos, food_items):
+    global selected_food
+    for item in food_items:
+        if item.rect.collidepoint(mouse_pos):
+            selected_food = item
+            print(f"Selected {selected_food.name}")
+            break
+
+
 # Initialize the pygame library
 pygame.init()
 
@@ -101,6 +131,13 @@ small_font = pygame.font.SysFont(Config.FONT_NAME, Config.FONT_SIZE)
 
 # Determine the initial game state based on whether data was loaded
 current_state = "main menu" if not game_manager.game_loaded else "game"
+
+# Initialize food items
+peach = Food("Peach", "Sprites/Food/peach.png", 1, alpha=True)
+cherry = Food("Cherry", "Sprites/Food/cherry.png", 2, alpha=True)
+
+food_items = [peach, cherry]  # List of food items
+eat_button = Button(425, 460, feed_normal, feed_hover, action=feed_pet)
 
 # Main game loop
 running = True
@@ -218,6 +255,10 @@ while running:
             if back_button.rect.collidepoint(pygame.mouse.get_pos()):
                 change_state("game")
 
+        draw_food_inventory(screen, food_items, 10, 460, 5, 50, 10)  # Draw food inventory
+        eat_button.update()
+        screen.blit(eat_button.image, eat_button.rect)
+
     elif current_state == "happy":
         screen.fill(Config.YELLOW)
         screen.blit(pet_sprite, sprite_position)
@@ -267,6 +308,13 @@ while running:
             play_button.handle_event(event)
             sleep_button.handle_event(event)
             back_button.handle_event(event)
+        elif event.type == pygame.MOUSEBUTTONDOWN:
+            mouse_x, mouse_y = pygame.mouse.get_pos()
+            if current_state == 'feed':
+                handle_food_selection((mouse_x, mouse_y), food_items)
+                # Check if the feed button is clicked to feed the pet
+                if eat_button.rect.collidepoint((mouse_x, mouse_y)):
+                    feed_pet()
 
     pygame.display.flip()
 
