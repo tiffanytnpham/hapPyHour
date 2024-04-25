@@ -52,6 +52,9 @@ class Config:
     IDLE3_PATH = "Sprites/Level1/Idle/idle3.png"
     IDLE4_PATH = "Sprites/Level1/Idle/idle4.png"
 
+    # Health paths
+    FULL_HEART_PATH = "Sprites/full_heart.png"
+    EMPTY_HEART_PATH = "Sprites/empty_heart.png"
 
     # Helper method for loading images
     @staticmethod

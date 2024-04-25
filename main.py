@@ -44,6 +44,18 @@ def get_pet_sprite(pet):
             return Config.load_image(Config.IDLE4_PATH, alpha=True)
 
 
+def draw_health(screen, health, max_health=10):
+    full_heart = Config.load_image(Config.FULL_HEART_PATH, alpha=True)
+    empty_heart = Config.load_image(Config.EMPTY_HEART_PATH, alpha=True)
+    heart_width = full_heart.get_width() + 18
+    for i in range(max_health):
+        heart_x = 15 + i * heart_width
+        if i < health:
+            screen.blit(full_heart, (heart_x, 25))
+        else:
+            screen.blit(empty_heart, (heart_x, 25))
+
+
 # Initialize the pygame library
 pygame.init()
 
@@ -77,15 +89,12 @@ sleep_hover = Config.load_image(Config.SLEEP_HOVER_PATH, alpha=True)
 back_normal = Config.load_image(Config.BACK_PATH, alpha=True)
 back_hover = Config.load_image(Config.BACK_HOVER_PATH, alpha=True)
 
-
-
 start_button = Button(202, 300, continue_normal, continue_hover, action=lambda: change_state('innit'))
 feed_button = Button(37, 450, feed_normal, feed_hover, action=lambda: change_state('feed'))
 happy_button = Button(161, 450, happy_normal, happy_hover, action=lambda: change_state('happy'))
 play_button = Button(300, 450, play_normal, play_hover, action=lambda: change_state('play'))
 sleep_button = Button(410, 450, sleep_normal, sleep_hover, action=lambda: change_state('sleep'))
 back_button = Button(425, 10, back_normal, back_hover, action=lambda: change_state('game'))
-
 
 # Configure the font
 small_font = pygame.font.SysFont(Config.FONT_NAME, Config.FONT_SIZE)
@@ -179,6 +188,8 @@ while running:
         pet_info_text = f"Name: {game_manager.pet.name}, Food: {game_manager.pet.food}, Happiness: {game_manager.pet.happiness}, Health: {game_manager.pet.health}"
         pet_info_render = small_font.render(pet_info_text, True, Config.WHITE)
         screen.blit(pet_info_render, (10, 10))
+
+        draw_health(screen, game_manager.pet.health, 10)
 
         feed_button.update()
         happy_button.update()

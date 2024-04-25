@@ -4,7 +4,7 @@ class Pet:
         self.name = ""
         self.food = 5
         self.happiness = 5
-        self.health = 5
+        self.health = 10
         self.sleep_timer = 0
         self.days_at_max_health = 0
 
