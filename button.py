@@ -26,4 +26,3 @@ class Button(pygame.sprite.Sprite):
                 self.action()
             self.image = self.original_image if not self.rect.collidepoint(pygame.mouse.get_pos()) else self.hover_image
             self.pressed = False
-

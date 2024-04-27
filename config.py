@@ -53,11 +53,13 @@ class Config:
     IDLE4_PATH = "Sprites/Level1/Idle/idle4.png"
 
     # Health paths
-    FULL_HEART_PATH = "Sprites/full_heart.png"
-    EMPTY_HEART_PATH = "Sprites/empty_heart.png"
+    FULL_HEART_PATH = "Sprites/Bars/full_heart.png"
+    EMPTY_HEART_PATH = "Sprites/Bars/empty_heart.png"
 
-    FOOD_GRID_PATH = "Sprites/food_grid.png"
-    TOY_GRID_PATH = "Sprites/toy_grid.png"
+    FOOD_GRID_PATH = "Sprites/Food/food_grid.png"
+    TOY_GRID_PATH = "Sprites/Toy/toy_grid.png"
+
+    buttons = {}
 
     # Helper method for loading images
     @staticmethod

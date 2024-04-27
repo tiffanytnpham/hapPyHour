@@ -6,8 +6,9 @@ import pygame
 from food import Food
 from pet import Pet
 from config import Config
-from gamemanager import GameManager
+from game_manager import GameManager
 from toy import Toy
+
 
 def change_state(new_state):
     global current_state
@@ -158,7 +159,6 @@ yarn = Toy("Yarn", "Sprites/Toy/yarn.png", 2, alpha=True)
 box = Toy("Box", "Sprites/Toy/box.png", 3, alpha=True)
 toy_items = [feather, yarn, box]  # List of toy items
 toy_grid = Config.load_image(Config.TOY_GRID_PATH, alpha=True)
-
 
 eat_button = Button(425, 460, feed_normal, feed_hover, action=give_item)
 toy_button = Button(425, 460, play_normal, play_hover, action=give_item)
