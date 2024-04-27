@@ -56,6 +56,9 @@ class Config:
     FULL_HEART_PATH = "Sprites/full_heart.png"
     EMPTY_HEART_PATH = "Sprites/empty_heart.png"
 
+    FOOD_GRID_PATH = "Sprites/food_grid.png"
+    TOY_GRID_PATH = "Sprites/toy_grid.png"
+
     # Helper method for loading images
     @staticmethod
     def load_image(path, alpha=False):

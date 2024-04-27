@@ -150,12 +150,15 @@ peach = Food("Peach", "Sprites/Food/peach.png", 1, alpha=True)
 cherry = Food("Cherry", "Sprites/Food/cherry.png", 2, alpha=True)
 fish = Food("Fish", "Sprites/Food/fish.png", 3, alpha=True)
 food_items = [peach, cherry, fish]  # List of food items
+food_grid = Config.load_image(Config.FOOD_GRID_PATH, alpha=True)
 
 # Initialize toy items
 feather = Toy("Feather", "Sprites/Toy/feather.png", 1, alpha=True)
 yarn = Toy("Yarn", "Sprites/Toy/yarn.png", 2, alpha=True)
 box = Toy("Box", "Sprites/Toy/box.png", 3, alpha=True)
 toy_items = [feather, yarn, box]  # List of toy items
+toy_grid = Config.load_image(Config.TOY_GRID_PATH, alpha=True)
+
 
 eat_button = Button(425, 460, feed_normal, feed_hover, action=give_item)
 toy_button = Button(425, 460, play_normal, play_hover, action=give_item)
@@ -277,7 +280,8 @@ while running:
                 selected_food = None
                 change_state("game")
 
-        draw_inventory(screen, food_items, 10, 460, 5, 50, 10)  # Draw food inventory
+        screen.blit(food_grid, (10, 450))
+        draw_inventory(screen, food_items, 20, 460, 5, 50, 10)  # Draw food inventory
         eat_button.update()
         screen.blit(eat_button.image, eat_button.rect)
 
@@ -297,7 +301,8 @@ while running:
                 selected_toy = None
                 change_state("game")
 
-        draw_inventory(screen, toy_items, 10, 460, 5, 50, 10)  # Draw toy inventory
+        screen.blit(toy_grid, (10, 450))
+        draw_inventory(screen, toy_items, 20, 460, 5, 50, 10)  # Draw toy inventory
         toy_button.update()
         screen.blit(toy_button.image, toy_button.rect)
     elif current_state == "play":

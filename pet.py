@@ -55,9 +55,9 @@ class Pet:
 
     def determine_state(self):
         """Determine the current visual state of the pet based on its stats."""
-        if self.happiness == 5 and self.health == 5 and self.food == 5:
+        if self.happiness == 5 and self.health == 10 and self.food == 5:
             return 'happy'
-        elif self.happiness <= 2 or self.health <= 2 or self.food <= 2:
+        elif self.happiness <= 2 or self.health <= 6 or self.food <= 2:
             return 'unhappy'
         else:
             return 'idle'
