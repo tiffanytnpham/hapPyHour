@@ -188,7 +188,8 @@ while running:
     if current_state == "main menu":
         if start_background:
             screen.blit(start_background, (0, 0))
-        start_button.update()
+
+
         screen.blit(start_button.image, start_button.rect)
         if logo:
             screen.blit(logo, (10, 10))
@@ -260,12 +261,6 @@ while running:
 
         draw_bar(screen, game_manager.pet.health, 10, current_state)
 
-        feed_button.update()
-        happy_button.update()
-        play_button.update()
-        sleep_button.update()
-        back_button.update()
-
         screen.blit(feed_button.image, feed_button.rect)
         screen.blit(happy_button.image, happy_button.rect)
         screen.blit(play_button.image, play_button.rect)
@@ -278,7 +273,6 @@ while running:
 
         draw_bar(screen, game_manager.pet.food, 5, current_state)
 
-        back_button.update()
         screen.blit(back_button.image, back_button)
 
         if event.type == pygame.MOUSEBUTTONDOWN:
@@ -288,7 +282,6 @@ while running:
 
         screen.blit(food_grid, (10, 450))
         draw_inventory(screen, food_items, 20, 460, 5, 50, 10)  # Draw food inventory
-        eat_button.update()
         screen.blit(eat_button.image, eat_button.rect)
 
     elif current_state == "happy":
@@ -297,7 +290,6 @@ while running:
 
         draw_bar(screen, game_manager.pet.happiness, 5, current_state)
 
-        back_button.update()
         screen.blit(back_button.image, back_button)
 
         if event.type == pygame.MOUSEBUTTONDOWN:
@@ -307,13 +299,11 @@ while running:
 
         screen.blit(toy_grid, (10, 450))
         draw_inventory(screen, toy_items, 20, 460, 5, 50, 10)  # Draw toy inventory
-        toy_button.update()
         screen.blit(toy_button.image, toy_button.rect)
     elif current_state == "play":
         screen.fill(Config.PURPLE)
         screen.blit(pet_sprite, sprite_position)
 
-        back_button.update()
         screen.blit(back_button.image, back_button)
         if event.type == pygame.MOUSEBUTTONDOWN:
             if back_button.rect.collidepoint(pygame.mouse.get_pos()):
@@ -323,7 +313,6 @@ while running:
         screen.fill(Config.GREY)
         screen.blit(pet_sprite, sprite_position)
 
-        back_button.update()
         screen.blit(back_button.image, back_button)
         if event.type == pygame.MOUSEBUTTONDOWN:
             if back_button.rect.collidepoint(pygame.mouse.get_pos()):
@@ -346,16 +335,25 @@ while running:
         elif event.type == pygame.MOUSEBUTTONDOWN:
             mouse_x, mouse_y = pygame.mouse.get_pos()
             if current_state == "feed":
+                back_button.handle_event(event)
+                eat_button.handle_event(event)
+
                 handle_selection((mouse_x, mouse_y), food_items, current_state)
                 # Check if the feed button is clicked to feed the pet
                 if eat_button.rect.collidepoint((mouse_x, mouse_y)):
                     give_item()
             elif current_state == "happy":
+                back_button.handle_event(event)
+                toy_button.handle_event(event)
+
                 handle_selection((mouse_x, mouse_y), toy_items, current_state)
                 # Check if the play button is clicked to give toy to the pet
                 if eat_button.rect.collidepoint((mouse_x, mouse_y)):
                     give_item()
-
+            elif current_state == "play":
+                back_button.handle_event(event)
+            elif current_state == "sleep":
+                back_button.handle_event(event)
     pygame.display.flip()
 
 pygame.quit()
