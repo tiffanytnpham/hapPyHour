@@ -55,6 +55,10 @@ class Config:
     # Health paths
     FULL_HEART_PATH = "Sprites/Bars/full_heart.png"
     EMPTY_HEART_PATH = "Sprites/Bars/empty_heart.png"
+    FULL_FISH_PATH = "Sprites/Bars/full_fish.png"
+    EMPTY_FISH_PATH = "Sprites/Bars/empty_fish.png"
+    FULL_PAW_PATH = "Sprites/Bars/full_paw.png"
+    EMPTY_PAW_PATH = "Sprites/Bars/empty_paw.png"
 
     FOOD_GRID_PATH = "Sprites/Food/food_grid.png"
     TOY_GRID_PATH = "Sprites/Toy/toy_grid.png"

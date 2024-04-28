@@ -47,16 +47,28 @@ def get_pet_sprite(pet):
             return Config.load_image(Config.IDLE4_PATH, alpha=True)
 
 
-def draw_health(screen, health, max_health=10):
-    full_heart = Config.load_image(Config.FULL_HEART_PATH, alpha=True)
-    empty_heart = Config.load_image(Config.EMPTY_HEART_PATH, alpha=True)
-    heart_width = full_heart.get_width() + 18
+def draw_bar(screen, health, max_health, current_state):
+    full_bar = None
+    empty_bar = None
+    bar_width = 0
+    if current_state == "game":
+        full_bar = Config.load_image(Config.FULL_HEART_PATH, alpha=True)
+        empty_bar = Config.load_image(Config.EMPTY_HEART_PATH, alpha=True)
+        bar_width = full_bar.get_width() + 18
+    elif current_state == "feed":
+        full_bar = Config.load_image(Config.FULL_FISH_PATH, alpha=True)
+        empty_bar = Config.load_image(Config.EMPTY_FISH_PATH, alpha=True)
+        bar_width = full_bar.get_width() + 18
+    elif current_state == "happy":
+        full_bar = Config.load_image(Config.FULL_PAW_PATH, alpha=True)
+        empty_bar = Config.load_image(Config.EMPTY_PAW_PATH, alpha=True)
+        bar_width = full_bar.get_width() + 18
     for i in range(max_health):
-        heart_x = 15 + i * heart_width
+        heart_x = 15 + i * bar_width
         if i < health:
-            screen.blit(full_heart, (heart_x, 25))
+            screen.blit(full_bar, (heart_x, 10))
         else:
-            screen.blit(empty_heart, (heart_x, 25))
+            screen.blit(empty_bar, (heart_x, 10))
 
 
 def draw_inventory(screen, items, start_x, start_y, columns, cell_size, spacing):
@@ -246,11 +258,7 @@ while running:
             screen.blit(game_background, (0, 0))
         screen.blit(pet_sprite, sprite_position)
 
-        pet_info_text = f"Name: {game_manager.pet.name}, Food: {game_manager.pet.food}, Happiness: {game_manager.pet.happiness}, Health: {game_manager.pet.health}"
-        pet_info_render = small_font.render(pet_info_text, True, Config.WHITE)
-        screen.blit(pet_info_render, (10, 10))
-
-        draw_health(screen, game_manager.pet.health, 10)
+        draw_bar(screen, game_manager.pet.health, 10, current_state)
 
         feed_button.update()
         happy_button.update()
@@ -268,9 +276,7 @@ while running:
         screen.fill(Config.GREEN)
         screen.blit(pet_sprite, sprite_position)
 
-        pet_info_text = f"Food: {game_manager.pet.food}"
-        pet_info_render = small_font.render(pet_info_text, True, Config.WHITE)
-        screen.blit(pet_info_render, (10, 10))
+        draw_bar(screen, game_manager.pet.food, 5, current_state)
 
         back_button.update()
         screen.blit(back_button.image, back_button)
@@ -289,9 +295,7 @@ while running:
         screen.fill(Config.YELLOW)
         screen.blit(pet_sprite, sprite_position)
 
-        pet_info_text = f"Happiness: {game_manager.pet.happiness}"
-        pet_info_render = small_font.render(pet_info_text, True, Config.WHITE)
-        screen.blit(pet_info_render, (10, 10))
+        draw_bar(screen, game_manager.pet.happiness, 5, current_state)
 
         back_button.update()
         screen.blit(back_button.image, back_button)
