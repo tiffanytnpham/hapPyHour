@@ -1,5 +1,7 @@
 import pygame
 import os
+
+
 class Config:
     # Screen dimensions
     SCREEN_WIDTH = 512

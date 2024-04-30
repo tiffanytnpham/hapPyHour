@@ -1,6 +1,7 @@
 import pygame
 from config import Config
 
+
 class Food:
     def __init__(self, name, image_path, hunger_value, alpha=True):
         self.name = name

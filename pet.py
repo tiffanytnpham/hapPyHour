@@ -89,13 +89,13 @@ class Pet:
     def determine_state(self):
         """Determine the current visual state of the pet based on its stats."""
         if self.is_asleep:
-            return 'asleep'
+            return "asleep"
         if self.happiness == 5 and self.health == 10 and self.food == 5:
-            return 'happy'
+            return "happy"
         elif self.happiness <= 2 or self.health <= 6 or self.food <= 2:
-            return 'unhappy'
+            return "unhappy"
         else:
-            return 'idle'
+            return "idle"
 
     def evolve(self):
         """Handle the pet's evolution process."""

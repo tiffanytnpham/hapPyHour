@@ -4,17 +4,57 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0138dbc1-9df0-4fa4-9a04-5c353efe26ad" name="Changes" comment="fixed food grid">
-      <change afterPath="$PROJECT_DIR$/Sprites/Button/game1.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Sprites/Button/game1_hover.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Sprites/Button/game2.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Sprites/Button/game2_hover.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Sprites/Button/x.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Sprites/Button/x_hover.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Sprites/Level1/Asleep/asleep1.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Sprites/Level1/Asleep/asleep3.png" afterDir="false" />
+    <list default="true" id="0138dbc1-9df0-4fa4-9a04-5c353efe26ad" name="Changes" comment="added sleep mechanism, game 1">
+      <change afterPath="$PROJECT_DIR$/Sprites/Level1/Eating/eating1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Sprites/Level1/Eating/eating2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Sprites/Level2/Asleep/asleep1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Sprites/Level2/Asleep/asleep2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Sprites/Level2/Asleep/asleep3.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Sprites/Level2/Eating/eating1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Sprites/Level2/Eating/eating2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Sprites/Level2/Happy/happy1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Sprites/Level2/Happy/happy2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Sprites/Level2/Happy/happy3.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Sprites/Level2/Idle/idle1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Sprites/Level2/Idle/idle2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Sprites/Level2/Idle/idle3.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Sprites/Level2/Idle/idle4.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Sprites/Level2/Unhappy/unhappy1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Sprites/Level2/Unhappy/unhappy2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Sprites/Level2/Unhappy/unhappy3.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Sprites/Level3/Asleep/asleep1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Sprites/Level3/Asleep/asleep2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Sprites/Level3/Asleep/asleep3.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Sprites/Level3/Eating/eating1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Sprites/Level3/Eating/eating2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Sprites/Level3/Happy/happy1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Sprites/Level3/Happy/happy2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Sprites/Level3/Happy/happy3.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Sprites/Level3/Idle/idle1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Sprites/Level3/Idle/idle2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Sprites/Level3/Idle/idle3.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Sprites/Level3/Idle/idle4.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Sprites/Level3/Unhappy/unhappy1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Sprites/Level3/Unhappy/unhappy2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Sprites/Level3/Unhappy/unhappy3.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Sprites/Level1/asleep.png" beforeDir="false" afterPath="$PROJECT_DIR$/Sprites/Level1/Asleep/asleep.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Sprites/Level1/eating.png" beforeDir="false" afterPath="$PROJECT_DIR$/Sprites/Level1/Eating/eating.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Sprites/Level1/happy.png" beforeDir="false" afterPath="$PROJECT_DIR$/Sprites/Level1/Happy/happy.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Sprites/Level1/idlepet.png" beforeDir="false" afterPath="$PROJECT_DIR$/Sprites/Level1/Idle/idlepet.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Sprites/Level1/unhappy.png" beforeDir="false" afterPath="$PROJECT_DIR$/Sprites/Level1/Unhappy/unhappy.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Sprites/Level2/asleep.png" beforeDir="false" afterPath="$PROJECT_DIR$/Sprites/Level2/Asleep/asleep.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Sprites/Level2/eating.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Sprites/Level2/happy.png" beforeDir="false" afterPath="$PROJECT_DIR$/Sprites/Level2/Happy/happy.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Sprites/Level2/idlepet.png" beforeDir="false" afterPath="$PROJECT_DIR$/Sprites/Level2/Idle/idlepet.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Sprites/Level2/unhappy.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Sprites/Level3/asleep.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Sprites/Level3/eating.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Sprites/Level3/happy.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Sprites/Level3/idlepet.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Sprites/Level3/unhappy.png" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/config.py" beforeDir="false" afterPath="$PROJECT_DIR$/config.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/food.py" beforeDir="false" afterPath="$PROJECT_DIR$/food.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/game_manager.py" beforeDir="false" afterPath="$PROJECT_DIR$/game_manager.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pet.py" beforeDir="false" afterPath="$PROJECT_DIR$/pet.py" afterDir="false" />
@@ -83,11 +123,11 @@
 }</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\tiffa\Desktop\CS122\hapPyHour\Sprites\Bars" />
-      <recent name="$PROJECT_DIR$/Sprites/Toy" />
-      <recent name="$PROJECT_DIR$/Sprites/Food" />
-      <recent name="$PROJECT_DIR$/Sprites/Bars" />
-      <recent name="$PROJECT_DIR$/Sprites/Level1" />
+      <recent name="$PROJECT_DIR$/Sprites/Level2/Idle" />
+      <recent name="$PROJECT_DIR$/Sprites/Level2/Happy" />
+      <recent name="$PROJECT_DIR$/Sprites/Level1/Eating" />
+      <recent name="$PROJECT_DIR$/Sprites/Level2/Asleep" />
+      <recent name="$PROJECT_DIR$/Sprites/Level1/Idle" />
     </key>
   </component>
   <component name="SharedIndexes">
@@ -116,7 +156,7 @@
       <workItem from="1713831472788" duration="6116000" />
       <workItem from="1713919784297" duration="621000" />
       <workItem from="1713920427846" duration="6779000" />
-      <workItem from="1714444077433" duration="6465000" />
+      <workItem from="1714444077433" duration="14589000" />
     </task>
     <task id="LOCAL-00001" summary="first commit">
       <option name="closed" value="true" />
@@ -230,7 +270,15 @@
       <option name="project" value="LOCAL" />
       <updated>1714341152217</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="added sleep mechanism, game 1">
+      <option name="closed" value="true" />
+      <created>1714454538588</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1714454538588</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -261,12 +309,13 @@
     <MESSAGE value="added grids" />
     <MESSAGE value="fixed happy l1 animation" />
     <MESSAGE value="added food and happy bar" />
-    <option name="LAST_COMMIT_MESSAGE" value="added food and happy bar" />
+    <MESSAGE value="added sleep mechanism, game 1" />
+    <option name="LAST_COMMIT_MESSAGE" value="added sleep mechanism, game 1" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/hapPyHour$food_game.coverage" NAME="food_game Coverage Results" MODIFIED="1714260515647" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/hapPyHour$main.coverage" NAME="main Coverage Results" MODIFIED="1714454251604" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/hapPyHour$main.coverage" NAME="main Coverage Results" MODIFIED="1714494029368" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/hapPyHour$gamemanager.coverage" NAME="gamemanager Coverage Results" MODIFIED="1713743981963" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/hapPyHour$pet.coverage" NAME="pet Coverage Results" MODIFIED="1713743941347" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/hapPyHour$pet.coverage" NAME="pet Coverage Results" MODIFIED="1714454640417" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>
