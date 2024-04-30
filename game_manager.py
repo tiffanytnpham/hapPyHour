@@ -20,11 +20,14 @@ class GameManager:
             'food': self.pet.food,
             'happiness': self.pet.happiness,
             'health': self.pet.health,
+            'is_asleep': self.pet.is_asleep,  # Include sleep state
             'last_saved': datetime.datetime.now().isoformat()
         }
+
         with open(filename, 'w') as f:
             json.dump(game_data, f, indent=4)
-        print(f"Game state saved: Name: {self.pet.name}, Food: {self.pet.food}, Happiness: {self.pet.happiness}, Health: {self.pet.health}")
+        print(
+            f"Game state saved: Name: {self.pet.name}, Food: {self.pet.food}, Happiness: {self.pet.happiness}, Health: {self.pet.health}, Is asleep: {self.pet.is_asleep}")
         print("Game state saved.")
 
     def load_game(self, filename='game_save.json'):
@@ -50,14 +53,17 @@ class GameManager:
         self.pet.happiness = game_data['happiness']
         self.pet.health = game_data['health']
 
-        # Update based on the time passed since the last save
+        self.pet.is_asleep = game_data.get('is_asleep', False)  # Default to False
+
+        # Update based on time passed since last save
         for _ in range(hours_passed):
             self.pet.update_hourly()
 
         self.save_game()
         self.game_loaded = True
 
-        print(f"After update - Food: {self.pet.food}, Happiness: {self.pet.happiness}, Health: {self.pet.health}")
+        print(
+            f"After update - Food: {self.pet.food}, Happiness: {self.pet.happiness}, Health: {self.pet.health}, Asleep: {self.pet.is_asleep}")
 
     def create_initial_game_state(self):
         """Initialize a new game state and save it, marking as not loaded."""

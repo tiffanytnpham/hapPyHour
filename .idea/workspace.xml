@@ -4,11 +4,20 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0138dbc1-9df0-4fa4-9a04-5c353efe26ad" name="Changes" comment="added food and happy bar">
+    <list default="true" id="0138dbc1-9df0-4fa4-9a04-5c353efe26ad" name="Changes" comment="fixed food grid">
+      <change afterPath="$PROJECT_DIR$/Sprites/Button/game1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Sprites/Button/game1_hover.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Sprites/Button/game2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Sprites/Button/game2_hover.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Sprites/Button/x.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Sprites/Button/x_hover.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Sprites/Level1/Asleep/asleep1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Sprites/Level1/Asleep/asleep3.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/button.py" beforeDir="false" afterPath="$PROJECT_DIR$/button.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/config.py" beforeDir="false" afterPath="$PROJECT_DIR$/config.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/game_manager.py" beforeDir="false" afterPath="$PROJECT_DIR$/game_manager.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pet.py" beforeDir="false" afterPath="$PROJECT_DIR$/pet.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -62,6 +71,7 @@
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/ttnpham/Documents/cs122/hapPyHour/Sprites/Food&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
@@ -106,6 +116,7 @@
       <workItem from="1713831472788" duration="6116000" />
       <workItem from="1713919784297" duration="621000" />
       <workItem from="1713920427846" duration="6779000" />
+      <workItem from="1714444077433" duration="6465000" />
     </task>
     <task id="LOCAL-00001" summary="first commit">
       <option name="closed" value="true" />
@@ -252,21 +263,10 @@
     <MESSAGE value="added food and happy bar" />
     <option name="LAST_COMMIT_MESSAGE" value="added food and happy bar" />
   </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/main.py</url>
-          <line>17</line>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
-  </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/hapPyHour$food_game.coverage" NAME="food_game Coverage Results" MODIFIED="1714260515647" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/hapPyHour$main.coverage" NAME="main Coverage Results" MODIFIED="1714454251604" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/hapPyHour$gamemanager.coverage" NAME="gamemanager Coverage Results" MODIFIED="1713743981963" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/hapPyHour$pet.coverage" NAME="pet Coverage Results" MODIFIED="1713743941347" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/hapPyHour$main.coverage" NAME="main Coverage Results" MODIFIED="1714343589050" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/hapPyHour$food_game.coverage" NAME="food_game Coverage Results" MODIFIED="1714260515647" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>

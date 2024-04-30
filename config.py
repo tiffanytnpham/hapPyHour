@@ -39,6 +39,12 @@ class Config:
     SLEEP_HOVER_PATH = "Sprites/Button/sleep_hover.png"
     BACK_PATH = "Sprites/Button/back.png"
     BACK_HOVER_PATH = "Sprites/Button/back_hover.png"
+    GAME1_PATH = "Sprites/Button/game1.png"
+    GAME1_HOVER_PATH = "Sprites/Button/game1_hover.png"
+    GAME2_PATH = "Sprites/Button/game2.png"
+    GAME2_HOVER_PATH = "Sprites/Button/game2_hover.png"
+    X_PATH = "Sprites/Button/x.png"
+    X_HOVER_PATH = "Sprites/Button/x_hover.png"
 
     # Pet paths
     HAPPY1_PATH = "Sprites/Level1/Happy/happy1.png"
@@ -54,6 +60,10 @@ class Config:
     IDLE3_PATH = "Sprites/Level1/Idle/idle3.png"
     IDLE4_PATH = "Sprites/Level1/Idle/idle4.png"
 
+    ASLEEP1_PATH = "Sprites/Level1/Asleep/asleep1.png"
+    ASLEEP2_PATH = "Sprites/Level1/Asleep/asleep2.png"
+    ASLEEP3_PATH = "Sprites/Level1/Asleep/asleep3.png"
+
     # Health paths
     FULL_HEART_PATH = "Sprites/Bars/full_heart.png"
     EMPTY_HEART_PATH = "Sprites/Bars/empty_heart.png"
@@ -64,8 +74,6 @@ class Config:
 
     FOOD_GRID_PATH = "Sprites/Food/food_grid.png"
     TOY_GRID_PATH = "Sprites/Toy/toy_grid.png"
-
-    buttons = {}
 
     # Helper method for loading images
     @staticmethod
