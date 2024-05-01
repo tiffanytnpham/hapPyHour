@@ -27,6 +27,7 @@ class GameManager:
             "happiness": self.pet.happiness,
             "health": self.pet.health,
             "is_asleep": self.pet.is_asleep,
+            "level": self.pet.level,
             "last_saved": datetime.datetime.now().isoformat(),
         }
 
@@ -56,6 +57,7 @@ class GameManager:
         self.pet.food = game_data["food"]
         self.pet.happiness = game_data["happiness"]
         self.pet.health = game_data["health"]
+        self.pet.level = game_data["level"]
         self.pet.is_asleep = game_data.get("is_asleep", False)
 
         # Update based on time passed since last save
@@ -67,7 +69,7 @@ class GameManager:
         self.game_loaded = True
 
         print(
-            f"After update for {self.pet.name} - Food: {self.pet.food}, Happiness: {self.pet.happiness}, Health: {self.pet.health}, Asleep: {self.pet.is_asleep}")
+            f"After update for {self.pet.name} - Food: {self.pet.food}, Happiness: {self.pet.happiness}, Health: {self.pet.health}, Level: {self.pet.level} Asleep: {self.pet.is_asleep}")
 
     def create_initial_game_state(self):
         """Initialize a new game state and save it, marking as not loaded."""
@@ -83,3 +85,4 @@ class GameManager:
             print("Hourly update event triggered")
             self.pet.update_hourly()
             self.save_game()
+
