@@ -11,6 +11,7 @@ class Pet:
         self.sleep_timer = 0
         self.days_at_max_health = 0
         self.is_asleep = False
+        self.level = 1
 
     def feed(self, amount):
         """Feed the pet to increase its food level, and check its health impact."""
@@ -99,8 +100,9 @@ class Pet:
 
     def evolve(self):
         """Handle the pet's evolution process."""
-        print(f"{self.name} has evolved!")
-        # DO: evolution mechanics
+        if self.level < 3:   #Maximum Level
+            self.level += 1
+            print(f"{self.name} has evolved to level {self.level}!")
 
     def set_name(self, name):
         """Set the pet's name."""

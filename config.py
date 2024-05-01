@@ -48,23 +48,60 @@ class Config:
     X_PATH = "Sprites/Button/x.png"
     X_HOVER_PATH = "Sprites/Button/x_hover.png"
 
-    # Pet paths
-    HAPPY1_PATH = "Sprites/Level1/Happy/happy1.png"
-    HAPPY2_PATH = "Sprites/Level1/Happy/happy2.png"
-    HAPPY3_PATH = "Sprites/Level1/Happy/happy3.png"
+    # Level 1Pet paths1
+    LEVEL = ""
+    L1_HAPPY1_PATH = "Sprites/Level1/Happy/happy1.png"
+    L1_HAPPY2_PATH = "Sprites/Level1/Happy/happy2.png"
+    L1_HAPPY3_PATH = "Sprites/Level1/Happy/happy3.png"
 
-    UNHAPPY1_PATH = "Sprites/Level1/Unhappy/unhappy1.png"
-    UNHAPPY2_PATH = "Sprites/Level1/Unhappy/unhappy2.png"
-    UNHAPPY3_PATH = "Sprites/Level1/Unhappy/unhappy3.png"
+    L1_UNHAPPY1_PATH = "Sprites/Level1/Unhappy/unhappy1.png"
+    L1_UNHAPPY2_PATH = "Sprites/Level1/Unhappy/unhappy2.png"
+    L1_UNHAPPY3_PATH = "Sprites/Level1/Unhappy/unhappy3.png"
 
-    IDLE1_PATH = "Sprites/Level1/Idle/idle1.png"
-    IDLE2_PATH = "Sprites/Level1/Idle/idle2.png"
-    IDLE3_PATH = "Sprites/Level1/Idle/idle3.png"
-    IDLE4_PATH = "Sprites/Level1/Idle/idle4.png"
+    L1_IDLE1_PATH = "Sprites/Level1/Idle/idle1.png"
+    L1_IDLE2_PATH = "Sprites/Level1/Idle/idle2.png"
+    L1_IDLE3_PATH = "Sprites/Level1/Idle/idle3.png"
+    L1_IDLE4_PATH = "Sprites/Level1/Idle/idle4.png"
 
-    ASLEEP1_PATH = "Sprites/Level1/Asleep/asleep1.png"
-    ASLEEP2_PATH = "Sprites/Level1/Asleep/asleep2.png"
-    ASLEEP3_PATH = "Sprites/Level1/Asleep/asleep3.png"
+    L1_ASLEEP1_PATH = "Sprites/Level1/Asleep/asleep1.png"
+    L1_ASLEEP2_PATH = "Sprites/Level1/Asleep/asleep2.png"
+    L1_ASLEEP3_PATH = "Sprites/Level1/Asleep/asleep3.png"
+
+    #Level 2 Pet Paths
+    L2_HAPPY1_PATH = "Sprites/Level2/Happy/happy1.png"
+    L2_HAPPY2_PATH = "Sprites/Level2/Happy/happy2.png"
+    L2_HAPPY3_PATH = "Sprites/Level2/Happy/happy3.png"
+
+    L2_UNHAPPY1_PATH = "Sprites/Level2/Unhappy/unhappy1.png"
+    L2_UNHAPPY2_PATH = "Sprites/Level2/Unhappy/unhappy2.png"
+    L2_UNHAPPY3_PATH = "Sprites/Level2/Unhappy/unhappy3.png"
+
+    L2_IDLE1_PATH = "Sprites/Level2/Idle/idle1.png"
+    L2_IDLE2_PATH = "Sprites/Level2/Idle/idle2.png"
+    L2_IDLE3_PATH = "Sprites/Level2/Idle/idle3.png"
+    L2_IDLE4_PATH = "Sprites/Level2/Idle/idle4.png"
+
+    L2_ASLEEP1_PATH = "Sprites/Level2/Asleep/asleep1.png"
+    L2_ASLEEP2_PATH = "Sprites/Level2/Asleep/asleep2.png"
+    L2_ASLEEP3_PATH = "Sprites/Level2/Asleep/asleep3.png"
+
+    #Level 3 Pet Paths
+    L3_HAPPY1_PATH = "Sprites/Level3/Happy/happy1.png"
+    L3_HAPPY2_PATH = "Sprites/Level3/Happy/happy2.png"
+    L3_HAPPY3_PATH = "Sprites/Level3/Happy/happy3.png"
+
+    L3_UNHAPPY1_PATH = "Sprites/Level3/Unhappy/unhappy1.png"
+    L3_UNHAPPY2_PATH = "Sprites/Level3/Unhappy/unhappy2.png"
+    L3_UNHAPPY3_PATH = "Sprites/Level3/Unhappy/unhappy3.png"
+
+    L3_IDLE1_PATH = "Sprites/Level3/Idle/idle1.png"
+    L3_IDLE2_PATH = "Sprites/Level3/Idle/idle2.png"
+    L3_IDLE3_PATH = "Sprites/Level3/Idle/idle3.png"
+    L3_IDLE4_PATH = "Sprites/Level3/Idle/idle4.png"
+
+    L3_ASLEEP1_PATH = "Sprites/Level2/Asleep/asleep1.png"
+    L3_ASLEEP2_PATH = "Sprites/Level3/Asleep/asleep2.png"
+    L3_ASLEEP3_PATH = "Sprites/Level3/Asleep/asleep3.png"
 
     # Health paths
     FULL_HEART_PATH = "Sprites/Bars/full_heart.png"

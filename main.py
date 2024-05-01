@@ -17,43 +17,42 @@ def change_state(new_state):
 
 def get_pet_sprite(pet):
     state = pet.determine_state()
+    LEVEL = pet.level
     current_time = pygame.time.get_ticks()
-
     if state == "happy":
         index = (current_time // 500) % 3
-        if index == 0:
-            return Config.load_image(Config.HAPPY1_PATH, alpha=True)
+        if index == 0:   
+            return Config.load_image(getattr(Config, f"L{LEVEL}_HAPPY1_PATH"), alpha=True)
         elif index == 1:
-            return Config.load_image(Config.HAPPY2_PATH, alpha=True)
+            return Config.load_image(getattr(Config, f"L{LEVEL}_HAPPY2_PATH"), alpha=True)
         else:
-            return Config.load_image(Config.HAPPY3_PATH, alpha=True)
+            return Config.load_image(getattr(Config, f"L{LEVEL}_HAPPY3_PATH"), alpha=True)
     elif state == "unhappy":
         index = (current_time // 500) % 3
         if index == 0:
-            return Config.load_image(Config.UNHAPPY1_PATH, alpha=True)
+            return Config.load_image(getattr(Config, f"L{LEVEL}_UNHAPPY1_PATH"), alpha=True)
         elif index == 1:
-            return Config.load_image(Config.UNHAPPY2_PATH, alpha=True)
+            return Config.load_image(getattr(Config, f"L{LEVEL}_UNHAPPY2_PATH"), alpha=True)
         else:
-            return Config.load_image(Config.UNHAPPY3_PATH, alpha=True)
+            return Config.load_image(getattr(Config, f"L{LEVEL}_UNHAPPY3_PATH"), alpha=True)
     elif state == "asleep":
         index = (current_time // 1000) % 3
         if index == 0:
-            return Config.load_image(Config.ASLEEP1_PATH, alpha=True)
+            return Config.load_image(getattr(Config, f"L{LEVEL}_ASLEEP1_PATH"), alpha=True)
         elif index == 1:
-            return Config.load_image(Config.ASLEEP2_PATH, alpha=True)
+            return Config.load_image(getattr(Config, f"L{LEVEL}_ASLEEP2_PATH"), alpha=True)
         else:
-            return Config.load_image(Config.ASLEEP3_PATH, alpha=True)
+            return Config.load_image(getattr(Config, f"L{LEVEL}_ASLEEP3_PATH"), alpha=True)
     else:
         index = (current_time // 500) % 4
         if index == 0:
-            return Config.load_image(Config.IDLE1_PATH, alpha=True)
+            return Config.load_image(getattr(Config, f"L{LEVEL}_IDLE1_PATH"), alpha=True)
         elif index == 1:
-            return Config.load_image(Config.IDLE2_PATH, alpha=True)
+            return Config.load_image(getattr(Config, f"L{LEVEL}_IDLE2_PATH"), alpha=True)
         elif index == 2:
-            return Config.load_image(Config.IDLE3_PATH, alpha=True)
+            return Config.load_image(getattr(Config, f"L{LEVEL}_IDLE3_PATH"), alpha=True)
         else:
-            return Config.load_image(Config.IDLE4_PATH, alpha=True)
-
+            return Config.load_image(getattr(Config, f"L{LEVEL}_IDLE4_PATH"), alpha=True)
 
 def initialize_buttons():
     """Initialize and return a dictionary of game buttons."""
