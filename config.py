@@ -27,8 +27,6 @@ class Config:
     # Button paths
     CONTINUE_PATH = "Sprites/Button/continue.png"
     CONTINUE_HOVER_PATH = "Sprites/Button/continue_hover.png"
-    CONTINUE_PATH = "Sprites/Button/continue.png"
-    CONTINUE_HOVER_PATH = "Sprites/Button/continue_hover.png"
     NEW_GAME_PATH = "Sprites/Button/new_game.png"
     NEW_GAME_HOVER_PATH = "Sprites/Button/new_game_hover.png"
     FEED_PATH = "Sprites/Button/feed.png"
