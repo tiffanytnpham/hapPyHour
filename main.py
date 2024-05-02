@@ -1,10 +1,10 @@
-import pygame
+import datetime
+import subprocess
 import os
+import pygame
 
 from button import Button
-import pygame
 from food import Food
-from pet import Pet
 from config import Config
 from game_manager import GameManager
 from toy import Toy
@@ -17,34 +17,139 @@ def change_state(new_state):
 
 def get_pet_sprite(pet):
     state = pet.determine_state()
+    LEVEL = pet.level
     current_time = pygame.time.get_ticks()
-
-    if state == 'happy':
+    if state == "happy":
+        index = (current_time // 500) % 3
+        if index == 0:   
+            return Config.load_image(getattr(Config, f"L{LEVEL}_HAPPY1_PATH"), alpha=True)
+        elif index == 1:
+            return Config.load_image(getattr(Config, f"L{LEVEL}_HAPPY2_PATH"), alpha=True)
+        else:
+            return Config.load_image(getattr(Config, f"L{LEVEL}_HAPPY3_PATH"), alpha=True)
+    elif state == "unhappy":
         index = (current_time // 500) % 3
         if index == 0:
-            return Config.load_image(Config.HAPPY1_PATH, alpha=True)
+            return Config.load_image(getattr(Config, f"L{LEVEL}_UNHAPPY1_PATH"), alpha=True)
         elif index == 1:
-            return Config.load_image(Config.HAPPY2_PATH, alpha=True)
+            return Config.load_image(getattr(Config, f"L{LEVEL}_UNHAPPY2_PATH"), alpha=True)
         else:
-            return Config.load_image(Config.HAPPY3_PATH, alpha=True)
-    elif state == 'unhappy':
-        index = (current_time // 500) % 3
+            return Config.load_image(getattr(Config, f"L{LEVEL}_UNHAPPY3_PATH"), alpha=True)
+    elif state == "asleep":
+        index = (current_time // 1000) % 3
         if index == 0:
-            return Config.load_image(Config.UNHAPPY1_PATH, alpha=True)
+            return Config.load_image(getattr(Config, f"L{LEVEL}_ASLEEP1_PATH"), alpha=True)
         elif index == 1:
-            return Config.load_image(Config.UNHAPPY2_PATH, alpha=True)
+            return Config.load_image(getattr(Config, f"L{LEVEL}_ASLEEP2_PATH"), alpha=True)
         else:
-            return Config.load_image(Config.UNHAPPY3_PATH, alpha=True)
+            return Config.load_image(getattr(Config, f"L{LEVEL}_ASLEEP3_PATH"), alpha=True)
     else:
         index = (current_time // 500) % 4
         if index == 0:
-            return Config.load_image(Config.IDLE1_PATH, alpha=True)
+            return Config.load_image(getattr(Config, f"L{LEVEL}_IDLE1_PATH"), alpha=True)
         elif index == 1:
-            return Config.load_image(Config.IDLE2_PATH, alpha=True)
+            return Config.load_image(getattr(Config, f"L{LEVEL}_IDLE2_PATH"), alpha=True)
         elif index == 2:
-            return Config.load_image(Config.IDLE3_PATH, alpha=True)
+            return Config.load_image(getattr(Config, f"L{LEVEL}_IDLE3_PATH"), alpha=True)
         else:
-            return Config.load_image(Config.IDLE4_PATH, alpha=True)
+            return Config.load_image(getattr(Config, f"L{LEVEL}_IDLE4_PATH"), alpha=True)
+
+def initialize_buttons():
+    """Initialize and return a dictionary of game buttons."""
+    # Check if a game save file exists
+    save_exists = os.path.exists("game_save.json")
+
+    # Create the "New Game" button
+    new_game_button = Button(
+        202, 300,
+        Config.load_image(Config.NEW_GAME_PATH, alpha=True),
+        Config.load_image(Config.NEW_GAME_HOVER_PATH, alpha=True),
+        action=start_new_game,
+    )
+    buttons = {"new_game": new_game_button}
+
+    if save_exists:
+        # Create the "Continue" button if a save file exists
+        continue_button = Button(
+            202, 350,
+            Config.load_image(Config.CONTINUE_PATH, alpha=True),
+            Config.load_image(Config.CONTINUE_HOVER_PATH, alpha=True),
+            action=lambda: change_state("game"),
+        )
+        buttons["continue"] = continue_button
+
+    # Create secondary buttons for the game scene
+    buttons.update({
+        "feed": Button(37, 450,
+                       Config.load_image(Config.FEED_PATH, alpha=True),
+                       Config.load_image(Config.FEED_HOVER_PATH, alpha=True),
+                       action=lambda: change_state("feed")
+                       ),
+        "happy": Button(161, 450,
+                        Config.load_image(Config.HAPPY_PATH, alpha=True),
+                        Config.load_image(Config.HAPPY_HOVER_PATH, alpha=True),
+                        action=lambda: change_state("happy")
+                        ),
+        "play": Button(300, 450,
+                       Config.load_image(Config.PLAY_PATH, alpha=True),
+                       Config.load_image(Config.PLAY_HOVER_PATH, alpha=True),
+                       action=lambda: change_state("play")
+                       ),
+        "sleep": Button(410, 450,
+                        Config.load_image(Config.SLEEP_PATH, alpha=True),
+                        Config.load_image(Config.SLEEP_HOVER_PATH, alpha=True),
+                        action=lambda: change_state("sleep")
+                        ),
+        "back": Button(425, 10,
+                       Config.load_image(Config.BACK_PATH, alpha=True),
+                       Config.load_image(Config.BACK_HOVER_PATH, alpha=True),
+                       action=lambda: change_state("game")
+                       ),
+        "game1": Button(215, 205,
+                        Config.load_image(Config.GAME1_PATH, alpha=True),
+                        Config.load_image(Config.GAME1_HOVER_PATH, alpha=True),
+                        action=lambda: subprocess.Popen(["python", "food_game.py"])
+                        ),
+        "game2": Button(215, 250,
+                        Config.load_image(Config.GAME2_PATH, alpha=True),
+                        Config.load_image(Config.GAME2_HOVER_PATH, alpha=None),
+                        action=lambda: None
+                        ),
+        "x": Button(425, 10,
+                    Config.load_image(Config.X_PATH, alpha=True),
+                    Config.load_image(Config.X_HOVER_PATH, alpha=True),
+                    action=lambda: None
+                    ),
+        "eat": Button(425, 460,
+                      Config.load_image(Config.FEED_PATH, alpha=True),
+                      Config.load_image(Config.FEED_HOVER_PATH, alpha=True),
+                      action=give_item
+                      ),
+        "toy": Button(425, 460,
+                      Config.load_image(Config.PLAY_PATH, alpha=True),
+                      Config.load_image(Config.PLAY_HOVER_PATH, alpha=True),
+                      action=give_item
+                      ),
+        "asleep": Button(425, 460,
+                         Config.load_image(Config.SLEEP_PATH, alpha=True),
+                         Config.load_image(Config.SLEEP_HOVER_PATH, alpha=True),
+                         action=put_pet_to_sleep
+                         ),
+    })
+
+    return buttons
+
+
+def start_new_game():
+    """Start a new game by clearing the current save file and reinitializing the game state."""
+    if os.path.exists("game_save.json"):
+        os.remove("game_save.json")
+        print("Old save file deleted.")
+
+    global game_manager
+    game_manager.create_initial_game_state()
+
+    change_state("init")
 
 
 def draw_bar(screen, health, max_health, current_state):
@@ -97,6 +202,17 @@ def give_item():
         selected_toy = None
 
 
+def put_pet_to_sleep():
+    """Put the pet to sleep, manage its state, and save it."""
+    current_hour = datetime.datetime.now().hour
+
+    print(f"Putting the pet to sleep at hour {current_hour}.")
+    game_manager.pet.sleep(current_hour)
+
+    change_state("sleep")
+    print(f"Pet is now asleep at {current_hour}.")
+
+
 def handle_selection(mouse_pos, items, current_state):
     global selected_food
     global selected_toy
@@ -115,7 +231,7 @@ def handle_selection(mouse_pos, items, current_state):
 # Initialize the pygame library
 pygame.init()
 
-# Setup the display window based on configurations
+# Set up the display window based on configurations
 screen = pygame.display.set_mode((Config.SCREEN_WIDTH, Config.SCREEN_HEIGHT))
 
 # Set the window title
@@ -129,34 +245,27 @@ start_background = Config.load_image(Config.BACKGROUND_PATH)
 game_background = Config.load_image(Config.BACKGROUND_PATH)
 logo = Config.load_image(Config.LOGO_PATH, alpha=True)
 
-# Main menu buttons
-continue_normal = Config.load_image(Config.CONTINUE_PATH, alpha=True)
-continue_hover = Config.load_image(Config.CONTINUE_HOVER_PATH, alpha=True)
+# Initialize buttons
+buttons = initialize_buttons()
 
-# Game scene buttons
-feed_normal = Config.load_image(Config.FEED_PATH, alpha=True)
-feed_hover = Config.load_image(Config.FEED_HOVER_PATH, alpha=True)
-happy_normal = Config.load_image(Config.HAPPY_PATH, alpha=True)
-happy_hover = Config.load_image(Config.HAPPY_HOVER_PATH, alpha=True)
-play_normal = Config.load_image(Config.PLAY_PATH, alpha=True)
-play_hover = Config.load_image(Config.PLAY_HOVER_PATH, alpha=True)
-sleep_normal = Config.load_image(Config.SLEEP_PATH, alpha=True)
-sleep_hover = Config.load_image(Config.SLEEP_HOVER_PATH, alpha=True)
-back_normal = Config.load_image(Config.BACK_PATH, alpha=True)
-back_hover = Config.load_image(Config.BACK_HOVER_PATH, alpha=True)
-
-start_button = Button(202, 300, continue_normal, continue_hover, action=lambda: change_state('innit'))
-feed_button = Button(37, 450, feed_normal, feed_hover, action=lambda: change_state('feed'))
-happy_button = Button(161, 450, happy_normal, happy_hover, action=lambda: change_state('happy'))
-play_button = Button(300, 450, play_normal, play_hover, action=lambda: change_state('play'))
-sleep_button = Button(410, 450, sleep_normal, sleep_hover, action=lambda: change_state('sleep'))
-back_button = Button(425, 10, back_normal, back_hover, action=lambda: change_state('game'))
+new_game_button = buttons["new_game"]
+continue_button = buttons.get("continue", None)
+feed_button = buttons["feed"]
+happy_button = buttons["happy"]
+play_button = buttons["play"]
+sleep_button = buttons["sleep"]
+back_button = buttons["back"]
+eat_button = buttons["eat"]
+toy_button = buttons["toy"]
+asleep_button = buttons["asleep"]
+game1_button = buttons["game1"]
+game2_button = buttons["game2"]
+x_button = buttons["x"]
 
 # Configure the font
 small_font = pygame.font.SysFont(Config.FONT_NAME, Config.FONT_SIZE)
 
-# Determine the initial game state based on whether data was loaded
-current_state = "main menu" if not game_manager.game_loaded else "game"
+current_state = "main menu"
 
 # Initialize food items
 peach = Food("Peach", "Sprites/Food/peach.png", 1, alpha=True)
@@ -172,9 +281,6 @@ box = Toy("Box", "Sprites/Toy/box.png", 3, alpha=True)
 toy_items = [feather, yarn, box]  # List of toy items
 toy_grid = Config.load_image(Config.TOY_GRID_PATH, alpha=True)
 
-eat_button = Button(425, 460, feed_normal, feed_hover, action=give_item)
-toy_button = Button(425, 460, play_normal, play_hover, action=give_item)
-
 # Main game loop
 running = True
 while running:
@@ -189,28 +295,26 @@ while running:
         if start_background:
             screen.blit(start_background, (0, 0))
 
-
-        screen.blit(start_button.image, start_button.rect)
+        screen.blit(new_game_button.image, new_game_button.rect)
+        if "continue" in buttons:
+            screen.blit(continue_button.image, continue_button.rect)
         if logo:
             screen.blit(logo, (10, 10))
-        # Check for button press to switch to initialization state
         for event in pygame.event.get():
-            start_button.handle_event(event)  # Handle button events
+            new_game_button.handle_event(event)
+            if "continue" in buttons:
+                continue_button.handle_event(event)
             if event.type == pygame.QUIT:
                 running = False
-            elif event.type == pygame.MOUSEBUTTONDOWN:
-                mouse_pos = pygame.mouse.get_pos()
-                if start_button.rect.collidepoint(mouse_pos):
-                    current_state = "init"
 
     # Handle initial game setup where player names their pet
     elif current_state == "init":
         input_box = pygame.Rect(Config.SCREEN_WIDTH // 2 - 100, Config.SCREEN_HEIGHT // 2 - 25, 200, 50)
-        color_inactive = pygame.Color('lightskyblue3')
-        color_active = pygame.Color('dodgerblue2')
+        color_inactive = pygame.Color("lightskyblue3")
+        color_active = pygame.Color("dodgerblue2")
         color = color_inactive
         active = False
-        text = ''
+        text = ""
         font = pygame.font.Font(None, 32)
         clock = pygame.time.Clock()
 
@@ -235,6 +339,7 @@ while running:
                     if active:
                         if event.key == pygame.K_RETURN:
                             game_manager.pet.set_name(text)
+                            game_manager.state_valid_for_save = True
                             game_manager.save_game()
                             current_state = "game"
                             init_running = False
@@ -266,7 +371,6 @@ while running:
         screen.blit(play_button.image, play_button.rect)
         screen.blit(sleep_button.image, sleep_button.rect)
 
-
     elif current_state == "feed":
         screen.fill(Config.GREEN)
         screen.blit(pet_sprite, sprite_position)
@@ -274,11 +378,6 @@ while running:
         draw_bar(screen, game_manager.pet.food, 5, current_state)
 
         screen.blit(back_button.image, back_button)
-
-        if event.type == pygame.MOUSEBUTTONDOWN:
-            if back_button.rect.collidepoint(pygame.mouse.get_pos()):
-                selected_food = None
-                change_state("game")
 
         screen.blit(food_grid, (10, 450))
         draw_inventory(screen, food_items, 20, 460, 5, 50, 10)  # Draw food inventory
@@ -292,31 +391,20 @@ while running:
 
         screen.blit(back_button.image, back_button)
 
-        if event.type == pygame.MOUSEBUTTONDOWN:
-            if back_button.rect.collidepoint(pygame.mouse.get_pos()):
-                selected_toy = None
-                change_state("game")
-
         screen.blit(toy_grid, (10, 450))
         draw_inventory(screen, toy_items, 20, 460, 5, 50, 10)  # Draw toy inventory
         screen.blit(toy_button.image, toy_button.rect)
     elif current_state == "play":
         screen.fill(Config.PURPLE)
-        screen.blit(pet_sprite, sprite_position)
-
+        screen.blit(game1_button.image, game1_button)
+        screen.blit(game2_button.image, game2_button)
         screen.blit(back_button.image, back_button)
-        if event.type == pygame.MOUSEBUTTONDOWN:
-            if back_button.rect.collidepoint(pygame.mouse.get_pos()):
-                change_state("game")
 
     elif current_state == "sleep":
         screen.fill(Config.GREY)
         screen.blit(pet_sprite, sprite_position)
-
         screen.blit(back_button.image, back_button)
-        if event.type == pygame.MOUSEBUTTONDOWN:
-            if back_button.rect.collidepoint(pygame.mouse.get_pos()):
-                change_state("game")
+        screen.blit(asleep_button.image, asleep_button.rect)
 
     # Event handling
     for event in pygame.event.get():
@@ -324,8 +412,11 @@ while running:
             # Save the game and exit
             game_manager.save_game()
             running = False
+
         if current_state == "main menu":
-            start_button.handle_event(event)
+            new_game_button.handle_event(event)
+            if continue_button:
+                continue_button.handle_event(event)
         elif current_state == "game":
             feed_button.handle_event(event)
             happy_button.handle_event(event)
@@ -334,6 +425,8 @@ while running:
             back_button.handle_event(event)
         elif event.type == pygame.MOUSEBUTTONDOWN:
             mouse_x, mouse_y = pygame.mouse.get_pos()
+            if back_button.rect.collidepoint(pygame.mouse.get_pos()):
+                change_state("game")
             if current_state == "feed":
                 back_button.handle_event(event)
                 eat_button.handle_event(event)
@@ -352,8 +445,15 @@ while running:
                     give_item()
             elif current_state == "play":
                 back_button.handle_event(event)
+                game1_button.action()
+
             elif current_state == "sleep":
                 back_button.handle_event(event)
+                asleep_button.handle_event(event)
+                if asleep_button.rect.collidepoint((mouse_x, mouse_y)):
+                    put_pet_to_sleep()
+
     pygame.display.flip()
 
 pygame.quit()
+
