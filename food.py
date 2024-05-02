@@ -3,10 +3,11 @@ from config import Config
 
 
 class Food:
-    def __init__(self, name, image_path, hunger_value, alpha=True):
+    def __init__(self, name, image_path, hunger_value, quantity=0, alpha=True):
         self.name = name
         self.image = self.load_image(image_path, alpha)
         self.hunger_value = hunger_value
+        self.quantity = quantity
         self.rect = self.image.get_rect()
 
     def load_image(self, path, alpha):

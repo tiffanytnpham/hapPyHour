@@ -177,12 +177,17 @@ def draw_bar(screen, health, max_health, current_state):
 
 
 def draw_inventory(screen, items, start_x, start_y, columns, cell_size, spacing):
+    font = pygame.font.Font(None, 24)  # Font for displaying quantity
     for index, item in enumerate(items):
         col = index % columns
         row = index // columns
         x = start_x + col * (cell_size + spacing)
         y = start_y + row * (cell_size + spacing)
         item.draw(screen, (x, y))
+        # Display quantity
+        quantity_text = font.render(str(item.quantity), True, (255, 255, 255))
+        screen.blit(quantity_text, (x + cell_size - quantity_text.get_width(), y))
+
 
 
 selected_food = None
@@ -195,10 +200,12 @@ def give_item():
     if selected_food:
         game_manager.pet.feed(selected_food.hunger_value)
         print(f"Feeding {selected_food.name} increases food by {selected_food.hunger_value}")
+        selected_food.quantity -= 1
         selected_food = None
     elif selected_toy:
         game_manager.pet.play(selected_toy.happy_value)
         print(f"Giving {selected_toy.name} increases happiness by {selected_toy.happy_value}")
+        selected_toy.quantity -= 1
         selected_toy = None
 
 
