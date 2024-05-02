@@ -22,11 +22,11 @@ def get_pet_sprite(pet):
     if state == 'happy':
         index = (current_time // 500) % 3
         if index == 0:
-            return Config.load_image(Config.HAPPY1_PATH, alpha=True)
+            return Config.load_image(Config.L1_HAPPY1_PATH, alpha=True)
         elif index == 1:
-            return Config.load_image(Config.HAPPY2_PATH, alpha=True)
+            return Config.load_image(Config.L1_HAPPY2_PATH, alpha=True)
         else:
-            return Config.load_image(Config.HAPPY3_PATH, alpha=True)
+            return Config.load_image(Config.L1_HAPPY3_PATH, alpha=True)
     elif state == 'unhappy':
         index = (current_time // 500) % 3
         if index == 0:
@@ -38,11 +38,11 @@ def get_pet_sprite(pet):
     else:
         index = (current_time // 500) % 4
         if index == 0:
-            return Config.load_image(Config.IDLE1_PATH, alpha=True)
+            return Config.load_image(Config.L1_UNHAPPY1_PATH, alpha=True)
         elif index == 1:
-            return Config.load_image(Config.IDLE2_PATH, alpha=True)
+            return Config.load_image(Config.L1_UNHAPPY2_PATH, alpha=True)
         elif index == 2:
-            return Config.load_image(Config.IDLE3_PATH, alpha=True)
+            return Config.load_image(Config.L1_UNHAPPY3_PATH, alpha=True)
         else:
             return Config.load_image(Config.IDLE4_PATH, alpha=True)
 
