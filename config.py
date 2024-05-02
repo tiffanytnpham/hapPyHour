@@ -27,6 +27,8 @@ class Config:
     # Button paths
     CONTINUE_PATH = "Sprites/Button/continue.png"
     CONTINUE_HOVER_PATH = "Sprites/Button/continue_hover.png"
+    CONTINUE_PATH = "Sprites/Button/continue.png"
+    CONTINUE_HOVER_PATH = "Sprites/Button/continue_hover.png"
     NEW_GAME_PATH = "Sprites/Button/new_game.png"
     NEW_GAME_HOVER_PATH = "Sprites/Button/new_game_hover.png"
     FEED_PATH = "Sprites/Button/feed.png"
@@ -46,8 +48,7 @@ class Config:
     X_PATH = "Sprites/Button/x.png"
     X_HOVER_PATH = "Sprites/Button/x_hover.png"
 
-    # Level 1Pet paths1
-    LEVEL = ""
+    # Level 1 Pet Paths
     L1_HAPPY1_PATH = "Sprites/Level1/Happy/happy1.png"
     L1_HAPPY2_PATH = "Sprites/Level1/Happy/happy2.png"
     L1_HAPPY3_PATH = "Sprites/Level1/Happy/happy3.png"
@@ -97,7 +98,7 @@ class Config:
     L3_IDLE3_PATH = "Sprites/Level3/Idle/idle3.png"
     L3_IDLE4_PATH = "Sprites/Level3/Idle/idle4.png"
 
-    L3_ASLEEP1_PATH = "Sprites/Level2/Asleep/asleep1.png"
+    L3_ASLEEP1_PATH = "Sprites/Level3/Asleep/asleep1.png"
     L3_ASLEEP2_PATH = "Sprites/Level3/Asleep/asleep2.png"
     L3_ASLEEP3_PATH = "Sprites/Level3/Asleep/asleep3.png"
 
