@@ -21,7 +21,7 @@ def get_pet_sprite(pet):
     current_time = pygame.time.get_ticks()
     if state == "happy":
         index = (current_time // 500) % 3
-        if index == 0:   
+        if index == 0:
             return Config.load_image(getattr(Config, f"L{LEVEL}_HAPPY1_PATH"), alpha=True)
         elif index == 1:
             return Config.load_image(getattr(Config, f"L{LEVEL}_HAPPY2_PATH"), alpha=True)
@@ -53,6 +53,7 @@ def get_pet_sprite(pet):
             return Config.load_image(getattr(Config, f"L{LEVEL}_IDLE3_PATH"), alpha=True)
         else:
             return Config.load_image(getattr(Config, f"L{LEVEL}_IDLE4_PATH"), alpha=True)
+
 
 def initialize_buttons():
     """Initialize and return a dictionary of game buttons."""
@@ -189,7 +190,6 @@ def draw_inventory(screen, items, start_x, start_y, columns, cell_size, spacing)
         screen.blit(quantity_text, (x + cell_size - quantity_text.get_width(), y))
 
 
-
 selected_food = None
 selected_toy = None
 
@@ -235,6 +235,24 @@ def handle_selection(mouse_pos, items, current_state):
                 break
 
 
+def handle_score(score, food_items):
+    if score < 10:
+        for item in food_items:
+            if item.name == "Peach":
+                item.quantity += 1
+    elif score < 20:
+        for item in food_items:
+            if item.name == "Cherry":
+                item.quantity += 1
+    elif score < 30:
+        for item in food_items:
+            if item.name == "Fish":
+                item.quantity += 1
+    else:
+        for item in food_items:
+            item.quantity += 1
+
+
 # Initialize the pygame library
 pygame.init()
 
@@ -245,12 +263,28 @@ screen = pygame.display.set_mode((Config.SCREEN_WIDTH, Config.SCREEN_HEIGHT))
 pygame.display.set_caption("HapPy Hour")
 
 # Create an instance of GameManager and load any existing game data
-game_manager = GameManager()
+# game_manager = GameManager()
 
 # Load backgrounds
 start_background = Config.load_image(Config.BACKGROUND_PATH)
 game_background = Config.load_image(Config.BACKGROUND_PATH)
 logo = Config.load_image(Config.LOGO_PATH, alpha=True)
+
+
+# Initialize food items
+peach = Food("Peach", "Sprites/Food/peach.png", 1, alpha=True)
+cherry = Food("Cherry", "Sprites/Food/cherry.png", 2, alpha=True)
+fish = Food("Fish", "Sprites/Food/fish.png", 3, alpha=True)
+food_items = [peach, cherry, fish]  # List of food items
+food_grid = Config.load_image(Config.FOOD_GRID_PATH, alpha=True)
+
+# Initialize toy items
+feather = Toy("Feather", "Sprites/Toy/feather.png", 1, alpha=True)
+yarn = Toy("Yarn", "Sprites/Toy/yarn.png", 2, alpha=True)
+box = Toy("Box", "Sprites/Toy/box.png", 3, alpha=True)
+toy_items = [feather, yarn, box]  # List of toy items
+toy_grid = Config.load_image(Config.TOY_GRID_PATH, alpha=True)
+
 
 # Initialize buttons
 buttons = initialize_buttons()
@@ -274,19 +308,7 @@ small_font = pygame.font.SysFont(Config.FONT_NAME, Config.FONT_SIZE)
 
 current_state = "main menu"
 
-# Initialize food items
-peach = Food("Peach", "Sprites/Food/peach.png", 1, alpha=True)
-cherry = Food("Cherry", "Sprites/Food/cherry.png", 2, alpha=True)
-fish = Food("Fish", "Sprites/Food/fish.png", 3, alpha=True)
-food_items = [peach, cherry, fish]  # List of food items
-food_grid = Config.load_image(Config.FOOD_GRID_PATH, alpha=True)
-
-# Initialize toy items
-feather = Toy("Feather", "Sprites/Toy/feather.png", 1, alpha=True)
-yarn = Toy("Yarn", "Sprites/Toy/yarn.png", 2, alpha=True)
-box = Toy("Box", "Sprites/Toy/box.png", 3, alpha=True)
-toy_items = [feather, yarn, box]  # List of toy items
-toy_grid = Config.load_image(Config.TOY_GRID_PATH, alpha=True)
+game_manager = GameManager(food_items, toy_items)
 
 # Main game loop
 running = True
@@ -453,6 +475,14 @@ while running:
             elif current_state == "play":
                 back_button.handle_event(event)
                 game1_button.action()
+                if game1_button.rect.collidepoint((mouse_x, mouse_y)):
+                    try:
+                        with open("food_game_score.txt") as f:
+                            score = int(f.read())
+
+                        handle_score(score, food_items)
+                    except (FileNotFoundError, ValueError):
+                        print("Error reading score from FoodGame")
 
             elif current_state == "sleep":
                 back_button.handle_event(event)
@@ -463,4 +493,3 @@ while running:
     pygame.display.flip()
 
 pygame.quit()
-

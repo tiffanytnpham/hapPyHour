@@ -2,7 +2,6 @@ import pygame
 import random
 
 pygame.init()
-
 WIDTH, HEIGHT = 800, 800
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption(f"Feed your pet as much as you can before the clock runs out!")
@@ -25,7 +24,7 @@ food_images = [pygame.image.load("Sprites/Food/peach.png"),
                pygame.image.load("Sprites/Food/fish.png"),
                pygame.image.load("Sprites/Food/cherry.png")]
 
-FOOD_SIZE = 40  
+FOOD_SIZE = 40
 foods = []
 
 for _ in range(30):
@@ -93,8 +92,13 @@ game_over_text = font.render("Well done!", True, RED)
 screen.blit(game_over_text, (WIDTH // 2 - 100, HEIGHT // 2 - 20))
 final_score_text = font.render("Final Score: " + str(score), True, BLACK)
 screen.blit(final_score_text, (WIDTH // 2 - 120, HEIGHT // 2 + 20))
+
 pygame.display.flip()
+
+with open("food_game_score.txt", "w") as f:
+    f.write(str(score))
 
 pygame.time.wait(2000)
 
 pygame.quit()
+

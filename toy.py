@@ -2,11 +2,11 @@ import pygame
 from config import Config
 
 class Toy:
-    def __init__(self, name, image_path, happy_value, quantity=0, alpha=True):
+    def __init__(self, name, image_path, happy_value, alpha=True):
         self.name = name
         self.image = self.load_image(image_path, alpha)
         self.happy_value = happy_value
-        self.quantity = quantity
+        self.quantity = 1
         self.rect = self.image.get_rect()
 
     def load_image(self, path, alpha):

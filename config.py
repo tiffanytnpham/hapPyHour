@@ -24,6 +24,8 @@ class Config:
     BACKGROUND_PATH = "Sprites/back.jpg"
     LOGO_PATH = "Sprites/logo.png"
 
+    BGM_PATH = "bgm.wav"
+
     # Button paths
     CONTINUE_PATH = "Sprites/Button/continue.png"
     CONTINUE_HOVER_PATH = "Sprites/Button/continue_hover.png"

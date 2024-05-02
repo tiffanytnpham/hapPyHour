@@ -7,12 +7,16 @@ from config import Config
 
 
 class GameManager:
-    def __init__(self):
+    def __init__(self, food_items, toy_items):
         """Initialize the GameManager, handling game state management and timing of updates."""
         self.pet = Pet()
+        self.food_items = food_items
+        self.toy_items = toy_items
+
         self.game_loaded = False
         self.state_valid_for_save = False
         self.load_game()
+        self.initialize_audio(Config.BGM_PATH)
         pygame.time.set_timer(pygame.USEREVENT + 1, 3600000)  # Set for hourly updates
 
     def save_game(self, filename="game_save.json"):
@@ -28,7 +32,9 @@ class GameManager:
             "health": self.pet.health,
             "is_asleep": self.pet.is_asleep,
             "level": self.pet.level,
+            "inventory": {item.name: item.quantity for item in self.food_items + self.toy_items},
             "last_saved": datetime.datetime.now().isoformat(),
+
         }
 
         with open(filename, "w") as f:
@@ -50,9 +56,8 @@ class GameManager:
         last_saved = datetime.datetime.fromisoformat(game_data["last_saved"])
         elapsed_time = datetime.datetime.now() - last_saved
         hours_passed = int(elapsed_time.total_seconds() // 3600)
-        print(f"Loading game... Hours passed since last save: {hours_passed}")
 
-        # Set the pet's attributes based on the loaded game data before updating.
+        # Set the pet's attributes
         self.pet.name = game_data["name"]
         self.pet.food = game_data["food"]
         self.pet.happiness = game_data["happiness"]
@@ -60,9 +65,14 @@ class GameManager:
         self.pet.level = game_data["level"]
         self.pet.is_asleep = game_data.get("is_asleep", False)
 
-        # Update based on time passed since last save
+        # Update based on time passed
         for _ in range(hours_passed):
             self.pet.update_hourly()
+
+        # Set inventory counts
+        inventory_data = game_data.get("inventory", {})
+        for item in self.food_items + self.toy_items:
+            item.quantity = inventory_data.get(item.name, 0)
 
         self.state_valid_for_save = True
         self.save_game()
@@ -78,6 +88,13 @@ class GameManager:
         self.game_loaded = False
         self.state_valid_for_save = False
         print("Initial game state created and saved.")
+
+    def initialize_audio(self, audio_file):
+        """Load and play background music using Pygame's mixer."""
+        pygame.mixer.init()  # Initialize the mixer
+        pygame.mixer.music.load(audio_file)
+        pygame.mixer.music.play(-1)  # Play in a loop
+
 
     def handle_event(self, event):
         """Respond to timed updates for the pet's state."""
