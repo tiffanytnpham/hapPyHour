@@ -27,6 +27,7 @@ def get_pet_sprite(pet):
             return Config.load_image(getattr(Config, f"L{LEVEL}_HAPPY2_PATH"), alpha=True)
         else:
             return Config.load_image(getattr(Config, f"L{LEVEL}_HAPPY3_PATH"), alpha=True)
+
     elif state == "unhappy":
         index = (current_time // 500) % 3
         if index == 0:
@@ -198,16 +199,19 @@ def give_item():
     global selected_food
     global selected_toy
     if selected_food:
-        game_manager.pet.feed(selected_food.hunger_value)
-        print(f"Feeding {selected_food.name} increases food by {selected_food.hunger_value}")
-        selected_food.quantity -= 1
+        if not selected_food.quantity <= 0:
+            game_manager.pet.feed(selected_food.hunger_value)
+            selected_food.quantity -= 1
+            print(f"Feeding {selected_food.name} increases food by {selected_food.hunger_value}")
+
         selected_food = None
     elif selected_toy:
-        game_manager.pet.play(selected_toy.happy_value)
-        print(f"Giving {selected_toy.name} increases happiness by {selected_toy.happy_value}")
-        selected_toy.quantity -= 1
-        selected_toy = None
+        if not selected_toy.quantity <= 0:
+            game_manager.pet.play(selected_toy.happy_value)
+            selected_toy.quantity -= 1
+            print(f"Giving {selected_toy.name} increases happiness by {selected_toy.happy_value}")
 
+        selected_toy = None
 
 def put_pet_to_sleep():
     """Put the pet to sleep, manage its state, and save it."""
