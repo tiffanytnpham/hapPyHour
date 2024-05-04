@@ -202,16 +202,15 @@ def give_item():
         if not selected_food.quantity <= 0:
             game_manager.pet.feed(selected_food.hunger_value)
             selected_food.quantity -= 1
-            print(f"Feeding {selected_food.name} increases food by {selected_food.hunger_value}")
 
         selected_food = None
     elif selected_toy:
         if not selected_toy.quantity <= 0:
             game_manager.pet.play(selected_toy.happy_value)
             selected_toy.quantity -= 1
-            print(f"Giving {selected_toy.name} increases happiness by {selected_toy.happy_value}")
 
         selected_toy = None
+
 
 def put_pet_to_sleep():
     """Put the pet to sleep, manage its state, and save it."""
@@ -221,7 +220,6 @@ def put_pet_to_sleep():
     game_manager.pet.sleep(current_hour)
 
     change_state("sleep")
-    print(f"Pet is now asleep at {current_hour}.")
 
 
 def handle_selection(mouse_pos, items, current_state):
@@ -274,7 +272,6 @@ start_background = Config.load_image(Config.BACKGROUND_PATH)
 game_background = Config.load_image(Config.BACKGROUND_PATH)
 logo = Config.load_image(Config.LOGO_PATH, alpha=True)
 
-
 # Initialize food items
 peach = Food("Peach", "Sprites/Food/peach.png", 1, alpha=True)
 cherry = Food("Cherry", "Sprites/Food/cherry.png", 2, alpha=True)
@@ -288,7 +285,6 @@ yarn = Toy("Yarn", "Sprites/Toy/yarn.png", 2, alpha=True)
 box = Toy("Box", "Sprites/Toy/box.png", 3, alpha=True)
 toy_items = [feather, yarn, box]  # List of toy items
 toy_grid = Config.load_image(Config.TOY_GRID_PATH, alpha=True)
-
 
 # Initialize buttons
 buttons = initialize_buttons()

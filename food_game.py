@@ -101,4 +101,3 @@ with open("food_game_score.txt", "w") as f:
 pygame.time.wait(2000)
 
 pygame.quit()
-

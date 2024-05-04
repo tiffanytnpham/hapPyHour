@@ -1,6 +1,7 @@
 import pygame
 from config import Config
 
+
 class Toy:
     def __init__(self, name, image_path, happy_value, alpha=True):
         self.name = name

@@ -68,7 +68,7 @@ class Config:
     L1_ASLEEP2_PATH = "Sprites/Level1/Asleep/asleep2.png"
     L1_ASLEEP3_PATH = "Sprites/Level1/Asleep/asleep3.png"
 
-    #Level 2 Pet Paths
+    # Level 2 Pet Paths
     L2_HAPPY1_PATH = "Sprites/Level2/Happy/happy1.png"
     L2_HAPPY2_PATH = "Sprites/Level2/Happy/happy2.png"
     L2_HAPPY3_PATH = "Sprites/Level2/Happy/happy3.png"
@@ -86,7 +86,7 @@ class Config:
     L2_ASLEEP2_PATH = "Sprites/Level2/Asleep/asleep2.png"
     L2_ASLEEP3_PATH = "Sprites/Level2/Asleep/asleep3.png"
 
-    #Level 3 Pet Paths
+    # Level 3 Pet Paths
     L3_HAPPY1_PATH = "Sprites/Level3/Happy/happy1.png"
     L3_HAPPY2_PATH = "Sprites/Level3/Happy/happy2.png"
     L3_HAPPY3_PATH = "Sprites/Level3/Happy/happy3.png"
