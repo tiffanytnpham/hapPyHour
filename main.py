@@ -115,7 +115,7 @@ def initialize_buttons():
         "game2": Button(215, 250,
                         Config.load_image(Config.GAME2_PATH, alpha=True),
                         Config.load_image(Config.GAME2_HOVER_PATH, alpha=None),
-                        action=lambda: None
+                        action=lambda: subprocess.Popen(["python", "matching.py"])
                         ),
         "x": Button(425, 10,
                     Config.load_image(Config.X_PATH, alpha=True),
@@ -339,7 +339,7 @@ while running:
     # Handle initial game setup where player names their pet
     elif current_state == "init":
         input_box = pygame.Rect(Config.SCREEN_WIDTH // 2 - 100, Config.SCREEN_HEIGHT // 2 - 25, 200, 50)
-        color_inactive = pygame.Color("lightskyblue3")
+        color_inactive = pygame.Color("lightpink")
         color_active = pygame.Color("dodgerblue2")
         color = color_inactive
         active = False
@@ -351,7 +351,8 @@ while running:
         init_running = True
         while init_running:
             screen.fill(Config.PINK)  # Set the background for the input screen
-            prompt_text = small_font.render("Name your pet!", True, (0, 0, 0))
+            name_font = pygame.font.SysFont(Config.FONT_NAME, 45)
+            prompt_text = name_font.render("Name your pet!", True, Config.WHITE)
             screen.blit(prompt_text,
                         (Config.SCREEN_WIDTH // 2 - prompt_text.get_width() // 2, Config.SCREEN_HEIGHT // 2 - 100))
             for event in pygame.event.get():
@@ -380,10 +381,10 @@ while running:
                         else:
                             text += event.unicode
             pygame.draw.rect(screen, color, input_box, 2)
-            txt_surface = font.render(text, True, color)
+            txt_surface = font.render(text, True, (255, 255, 255))
             width = max(200, txt_surface.get_width() + 10)
             input_box.w = width
-            screen.blit(txt_surface, (input_box.x + 5, input_box.y + 5))
+            screen.blit(txt_surface, (input_box.centerx - txt_surface.get_width() // 2, input_box.centery - txt_surface.get_height() // 2))
             pygame.display.flip()
             clock.tick(30)
 
@@ -482,7 +483,15 @@ while running:
 
                         handle_score(score, food_items)
                     except (FileNotFoundError, ValueError):
-                        print("Error reading score from FoodGame")
+                        print("Error reading score from Food Game")
+                
+                game2_button.action()
+                if game2_button.rect.collidepoint((mouse_x, mouse_y)):
+                    try:
+                        with open("matching_score.txt") as f:
+                            score = int(f.read())
+                    except (FileNotFoundError, ValueError):
+                        print("Error reading score from Matching Game")
 
             elif current_state == "sleep":
                 back_button.handle_event(event)
