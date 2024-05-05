@@ -411,7 +411,7 @@ while running:
         if game_background:
             screen.blit(game_background, (0, 0))
         screen.blit(pet_sprite, sprite_position)
-
+        screen.blit(small_font.render(game_manager.pet.name + " <3", True, (255, 255, 255)), (230, 50))
         draw_bar(screen, game_manager.pet.health, 10, current_state)
 
         screen.blit(feed_button.image, feed_button.rect)
