@@ -3,6 +3,7 @@ import pygame
 
 class Button(pygame.sprite.Sprite):
     def __init__(self, x, y, image, pressed_image, action=None):
+        """Initialize the button with default values."""
         super().__init__()
         self.pressed = None
         self.original_image = image
@@ -13,6 +14,7 @@ class Button(pygame.sprite.Sprite):
         self.clicked = False
 
     def handle_event(self, event):
+        """Handles button interactions."""
         if event.type == pygame.MOUSEBUTTONDOWN and self.rect.collidepoint(event.pos):
             self.image = self.pressed_image
             self.pressed = True

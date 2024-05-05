@@ -4,6 +4,7 @@ from config import Config
 
 class Food:
     def __init__(self, name, image_path, hunger_value, alpha=True):
+        """Initialize food item with default values."""
         self.name = name
         self.image = self.load_image(image_path, alpha)
         self.hunger_value = hunger_value

@@ -11,11 +11,13 @@ from toy import Toy
 
 
 def change_state(new_state):
+    """Changes current state of game according to scene."""
     global current_state
     current_state = new_state
 
 
 def get_pet_sprite(pet):
+    """Retrieves sprites for pets based on its current state."""
     state = pet.determine_state()
     LEVEL = pet.level
     current_time = pygame.time.get_ticks()
@@ -59,7 +61,7 @@ def get_pet_sprite(pet):
 def initialize_buttons():
     """Initialize and return a dictionary of game buttons."""
     # Check if a game save file exists
-    save_exists = os.path.exists("game_save.json")
+    save_exists = os.path.exists("Save Files/game_save.json")
 
     # Create the "New Game" button
     new_game_button = Button(
@@ -144,8 +146,8 @@ def initialize_buttons():
 
 def start_new_game():
     """Start a new game by clearing the current save file and reinitializing the game state."""
-    if os.path.exists("game_save.json"):
-        os.remove("game_save.json")
+    if os.path.exists("Save Files/game_save.json"):
+        os.remove("Save Files/game_save.json")
         print("Old save file deleted.")
 
     global game_manager
@@ -155,6 +157,7 @@ def start_new_game():
 
 
 def draw_bar(screen, health, max_health, current_state):
+    """Draws a status bar based on the current game state."""
     full_bar = None
     empty_bar = None
     bar_width = 0
@@ -179,7 +182,8 @@ def draw_bar(screen, health, max_health, current_state):
 
 
 def draw_inventory(screen, items, start_x, start_y, columns, cell_size, spacing):
-    font = pygame.font.Font(None, 24)  # Font for displaying quantity
+    """Displays a grid of inventory on the screen."""
+    font = pygame.font.Font(None, 24)
     for index, item in enumerate(items):
         col = index % columns
         row = index // columns
@@ -196,6 +200,7 @@ selected_toy = None
 
 
 def give_item():
+    """Handles functionality of giving an item to the pet."""
     global selected_food
     global selected_toy
     if selected_food:
@@ -223,6 +228,7 @@ def put_pet_to_sleep():
 
 
 def handle_selection(mouse_pos, items, current_state):
+    """Determines what item the player has selected from current state and mouse position."""
     global selected_food
     global selected_toy
     for item in items:
@@ -238,6 +244,7 @@ def handle_selection(mouse_pos, items, current_state):
 
 
 def handle_food_score(score, food_items):
+    """Updates the food inventory based on score from mini-game 1."""
     if score < 10:
         for item in food_items:
             if item.name == "Peach":
@@ -256,6 +263,7 @@ def handle_food_score(score, food_items):
 
 
 def handle_toy_score(score, toy_items):
+    """Updates the toy inventory based on score from mini-game 2."""
     if score < 10:
         for item in toy_items:
             if item.name == "Box":
