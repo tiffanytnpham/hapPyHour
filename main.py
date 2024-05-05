@@ -109,15 +109,15 @@ def initialize_buttons():
                        Config.load_image(Config.BACK_HOVER_PATH, alpha=True),
                        action=lambda: change_state("game")
                        ),
-        "game1": Button(215, 205,
+        "game1": Button(215, 200,
                         Config.load_image(Config.GAME1_PATH, alpha=True),
                         Config.load_image(Config.GAME1_HOVER_PATH, alpha=True),
                         action=lambda: subprocess.Popen(["python", "food_game.py"])
                         ),
-        "game2": Button(215, 250,
+        "game2": Button(215, 275,
                         Config.load_image(Config.GAME2_PATH, alpha=True),
                         Config.load_image(Config.GAME2_HOVER_PATH, alpha=True),
-                        action=lambda: subprocess.Popen(["python", "matching.py"])
+                        action=lambda: subprocess.Popen(["python", "matching_game.py"])
                         ),
         "x": Button(425, 10,
                     Config.load_image(Config.X_PATH, alpha=True),
@@ -514,7 +514,7 @@ while running:
                 if game2_button.rect.collidepoint((mouse_x, mouse_y)):
                     game2_button.action()
                     try:
-                        with open("matching_score.txt") as f:
+                        with open("matching_game_score.txt") as f:
                             score = int(f.read())
 
                         handle_toy_score(score, toy_items)

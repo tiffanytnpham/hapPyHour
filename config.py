@@ -68,6 +68,9 @@ class Config:
     L1_ASLEEP2_PATH = "Sprites/Level1/Asleep/asleep2.png"
     L1_ASLEEP3_PATH = "Sprites/Level1/Asleep/asleep3.png"
 
+    L1_EATING1_PATH = "Sprites/Level1/Eating/eating1.png"
+    L1_EATING2_PATH = "Sprites/Level1/Eating/eating2.png"
+
     # Level 2 Pet Paths
     L2_HAPPY1_PATH = "Sprites/Level2/Happy/happy1.png"
     L2_HAPPY2_PATH = "Sprites/Level2/Happy/happy2.png"
@@ -86,6 +89,9 @@ class Config:
     L2_ASLEEP2_PATH = "Sprites/Level2/Asleep/asleep2.png"
     L2_ASLEEP3_PATH = "Sprites/Level2/Asleep/asleep3.png"
 
+    L2_EATING1_PATH = "Sprites/Level2/Eating/eating1.png"
+    L2_EATING2_PATH = "Sprites/Level2/Eating/eating2.png"
+
     # Level 3 Pet Paths
     L3_HAPPY1_PATH = "Sprites/Level3/Happy/happy1.png"
     L3_HAPPY2_PATH = "Sprites/Level3/Happy/happy2.png"
@@ -103,6 +109,9 @@ class Config:
     L3_ASLEEP1_PATH = "Sprites/Level3/Asleep/asleep1.png"
     L3_ASLEEP2_PATH = "Sprites/Level3/Asleep/asleep2.png"
     L3_ASLEEP3_PATH = "Sprites/Level3/Asleep/asleep3.png"
+
+    L3_EATING1_PATH = "Sprites/Level3/Eating/eating1.png"
+    L3_EATING2_PATH = "Sprites/Level3/Eating/eating2.png"
 
     # Health paths
     FULL_HEART_PATH = "Sprites/Bars/full_heart.png"
