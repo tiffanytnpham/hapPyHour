@@ -101,7 +101,7 @@ while running:
         running = False
 
 #Score
-score_text = font.render(f"Well Done! Score: {score}", True, (0, 0, 0)) 
+score_text = font.render(f"Well Done! Attempts: {score}", True, (0, 0, 0))
 score_text_rect = score_text.get_rect(center=(WIDTH // 2, HEIGHT // 2))
 screen.blit(score_text, score_text_rect)
 

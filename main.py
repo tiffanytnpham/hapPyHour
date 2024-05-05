@@ -114,7 +114,7 @@ def initialize_buttons():
                         ),
         "game2": Button(215, 250,
                         Config.load_image(Config.GAME2_PATH, alpha=True),
-                        Config.load_image(Config.GAME2_HOVER_PATH, alpha=None),
+                        Config.load_image(Config.GAME2_HOVER_PATH, alpha=True),
                         action=lambda: subprocess.Popen(["python", "matching.py"])
                         ),
         "x": Button(425, 10,
@@ -237,7 +237,7 @@ def handle_selection(mouse_pos, items, current_state):
                 break
 
 
-def handle_score(score, food_items):
+def handle_food_score(score, food_items):
     if score < 10:
         for item in food_items:
             if item.name == "Peach":
@@ -252,6 +252,24 @@ def handle_score(score, food_items):
                 item.quantity += 1
     else:
         for item in food_items:
+            item.quantity += 1
+
+
+def handle_toy_score(score, toy_items):
+    if score < 10:
+        for item in toy_items:
+            if item.name == "Box":
+                item.quantity += 1
+    elif score < 20:
+        for item in toy_items:
+            if item.name == "Yarn":
+                item.quantity += 1
+    elif score < 30:
+        for item in toy_items:
+            if item.name == "Feather":
+                item.quantity += 1
+    else:
+        for item in toy_items:
             item.quantity += 1
 
 
@@ -475,21 +493,23 @@ while running:
                     give_item()
             elif current_state == "play":
                 back_button.handle_event(event)
-                game1_button.action()
                 if game1_button.rect.collidepoint((mouse_x, mouse_y)):
+                    game1_button.action()
                     try:
                         with open("food_game_score.txt") as f:
                             score = int(f.read())
 
-                        handle_score(score, food_items)
+                        handle_food_score(score, food_items)
                     except (FileNotFoundError, ValueError):
                         print("Error reading score from Food Game")
-                
-                game2_button.action()
+
                 if game2_button.rect.collidepoint((mouse_x, mouse_y)):
+                    game2_button.action()
                     try:
                         with open("matching_score.txt") as f:
                             score = int(f.read())
+
+                        handle_toy_score(score, toy_items)
                     except (FileNotFoundError, ValueError):
                         print("Error reading score from Matching Game")
 
