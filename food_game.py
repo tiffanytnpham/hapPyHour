@@ -3,9 +3,10 @@ import random
 
 pygame.init()
 WIDTH, HEIGHT = 800, 800
-screen = pygame.display.set_mode((WIDTH, HEIGHT))
+screen = pygame.display.set_mode((WIDTH, HEIGHT))   #Display
 pygame.display.set_caption(f"Feed your pet as much as you can before the clock runs out!")
 
+#Colors
 WHITE = (255, 255, 255)
 BLACK = (0, 0, 0)
 RED = (255, 0, 0)
@@ -15,11 +16,13 @@ BROWN = (205, 133, 63)
 
 font = pygame.font.SysFont(None, 40)
 
+#Load Pet sprite
 pet_image = pygame.image.load("Sprites/Level2/pet.png")
 pet_image = pygame.transform.scale(pet_image, (100, 100))
 pet_rect = pet_image.get_rect(center=(WIDTH // 2, HEIGHT // 2))
 PET_SPEED = 5
 
+#Load food sprites
 food_images = [pygame.image.load("Sprites/Food/peach.png"),
                pygame.image.load("Sprites/Food/fish.png"),
                pygame.image.load("Sprites/Food/cherry.png")]
@@ -27,6 +30,7 @@ food_images = [pygame.image.load("Sprites/Food/peach.png"),
 FOOD_SIZE = 40
 foods = []
 
+#Place food sprites randomly across the window
 for _ in range(30):
     food_image = random.choice(food_images)
     food_rect = food_image.get_rect(center=(random.randint(50, WIDTH - 50), random.randint(50, HEIGHT - 50)))
@@ -34,10 +38,12 @@ for _ in range(30):
 
 score = 0
 
+#Start clock
 clock = pygame.time.Clock()
 start_time = pygame.time.get_ticks()
 time_limit = 10
 
+#Game loop
 running = True
 while running:
     screen.fill(WHITE)
@@ -57,28 +63,31 @@ while running:
     if keys[pygame.K_DOWN]:
         pet_rect.move_ip(0, PET_SPEED)
 
-    pet_rect.clamp_ip(screen.get_rect())
+    pet_rect.clamp_ip(screen.get_rect())    #limit player movement to screen
 
+    #Draw sprites
     screen.blit(pet_image, pet_rect)
 
     for food_image, food_rect in foods:
         screen.blit(food_image, food_rect)
 
+    #Check and handle collision
     food_to_remove = []
     for food_image, food_rect in foods:
         if pet_rect.colliderect(food_rect):
             food_to_remove.append((food_image, food_rect))
             score += 1
 
-    for food_item in food_to_remove:
+    for food_item in food_to_remove:    #Remove food sprite that was collided with
         foods.remove(food_item)
 
+    #Display current score
     score_text = font.render("Score: " + str(score), True, BLACK)
     screen.blit(score_text, (10, 10))
 
     current_time = pygame.time.get_ticks()
     time_elapsed = (current_time - start_time) // 1000
-
+    #Show the timer
     timer_text = font.render("Time: " + str(max(time_limit - time_elapsed, 0)), True, BLACK)
     screen.blit(timer_text, (WIDTH - 120, 10))
 
@@ -88,6 +97,7 @@ while running:
     pygame.display.flip()
     clock.tick(60)
 
+#Display final score
 game_over_text = font.render("Well done!", True, RED)
 screen.blit(game_over_text, (WIDTH // 2 - 100, HEIGHT // 2 - 20))
 final_score_text = font.render("Final Score: " + str(score), True, BLACK)
@@ -95,6 +105,7 @@ screen.blit(final_score_text, (WIDTH // 2 - 120, HEIGHT // 2 + 20))
 
 pygame.display.flip()
 
+#Store the score in a txt file
 with open("food_game_score.txt", "w") as f:
     f.write(str(score))
 
