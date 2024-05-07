@@ -61,7 +61,7 @@ def get_pet_sprite(pet):
 def initialize_buttons():
     """Initialize and return a dictionary of game buttons."""
     # Check if a game save file exists
-    save_exists = os.path.exists("Save Files/game_save.json")
+    save_exists = os.path.exists("game_save.json")
 
     # Create the "New Game" button
     new_game_button = Button(
@@ -146,8 +146,8 @@ def initialize_buttons():
 
 def start_new_game():
     """Start a new game by clearing the current save file and reinitializing the game state."""
-    if os.path.exists("Save Files/game_save.json"):
-        os.remove("Save Files/game_save.json")
+    if os.path.exists("game_save.json"):
+        os.remove("game_save.json")
         print("Old save file deleted.")
 
     global game_manager
