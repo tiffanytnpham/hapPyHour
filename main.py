@@ -475,8 +475,9 @@ while running:
             if continue_button:
                 continue_button.handle_event(event)
         elif current_state == "game":
-            feed_button.handle_event(event)
-            happy_button.handle_event(event)
+            if not game_manager.pet.is_asleep:
+                feed_button.handle_event(event)
+                happy_button.handle_event(event)
             play_button.handle_event(event)
             sleep_button.handle_event(event)
             back_button.handle_event(event)
