@@ -4,9 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0138dbc1-9df0-4fa4-9a04-5c353efe26ad" name="Changes" comment="added function definitions">
+    <list default="true" id="0138dbc1-9df0-4fa4-9a04-5c353efe26ad" name="Changes" comment="removed save file directory">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -114,7 +113,7 @@
       <workItem from="1714444077433" duration="19968000" />
       <workItem from="1714627337796" duration="1945000" />
       <workItem from="1714787303751" duration="1455000" />
-      <workItem from="1714936511852" duration="10572000" />
+      <workItem from="1714936511852" duration="11965000" />
     </task>
     <task id="LOCAL-00001" summary="first commit">
       <option name="closed" value="true" />
@@ -300,7 +299,15 @@
       <option name="project" value="LOCAL" />
       <updated>1714942685615</updated>
     </task>
-    <option name="localTasksCounter" value="24" />
+    <task id="LOCAL-00024" summary="removed save file directory">
+      <option name="closed" value="true" />
+      <created>1715050454729</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1715050454729</updated>
+    </task>
+    <option name="localTasksCounter" value="25" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -340,7 +347,8 @@
     <MESSAGE value="added reward for matching game, fixed bug with game buttons" />
     <MESSAGE value="print name" />
     <MESSAGE value="added function definitions" />
-    <option name="LAST_COMMIT_MESSAGE" value="added function definitions" />
+    <MESSAGE value="removed save file directory" />
+    <option name="LAST_COMMIT_MESSAGE" value="removed save file directory" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/hapPyHour$food_game.coverage" NAME="food_game Coverage Results" MODIFIED="1714260515647" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
