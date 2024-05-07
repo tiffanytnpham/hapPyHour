@@ -11,6 +11,15 @@
 - **matching_game.py**: A mini game that can be accessed from the main game loop
 - **Sprites/**: Folder with all the sprite images required for the game
 - **bgm.wav**: Background music for the game
+
+
+The following files get generated upon running
+
+
+- **game_save.json**: Contains pet states to be saved
+- **food_game_score.txt**: Contains the most recent score from the food game
+- **matching_game_score.txt**: Contains the most recent number of attempts from the matching game
+  
 ## Installation
 
 In the desired directory run:
@@ -31,12 +40,13 @@ or simply run
 
 
 
+## Demo
+
+Insert gif or link to demo
+
+
 ## Authors
 
 - [Tiffany Tuyet Nhung Pham](https://github.com/tiffanytnpham)
 - [Siri Mudumbi](https://github.com/SiriM125)
 
-
-## Demo
-
-Insert gif or link to demo
